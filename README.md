@@ -98,6 +98,8 @@ The result: faster resolutions, fewer churned customers, and a measurable reduct
 
 ## Demo Preview
 
+![SyncFlow Demo](syncflow-demo.gif)
+
 > **Full 2-minute demo script:** [docs/demo-script.md](docs/demo-script.md)
 
 **Quick demo (< 60 seconds):**
