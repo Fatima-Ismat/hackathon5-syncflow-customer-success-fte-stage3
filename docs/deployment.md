@@ -9,8 +9,8 @@
 
 | Target | Technology | URL Pattern |
 |--------|-----------|-------------|
-| Backend API | Hugging Face Spaces (Docker SDK) | `https://YOUR-USERNAME-syncflow-api.hf.space` |
-| Frontend | Vercel (Next.js) | `https://syncflow-support.vercel.app` |
+| Backend API | Hugging Face Spaces (Docker SDK) | `https://ismat110-syncflow-api.hf.space` |
+| Frontend | Vercel (Next.js) | `https://hackathon5-syncflow-customer-succes.vercel.app` |
 | Database | PostgreSQL via Neon / Supabase / Railway | connection string |
 | Kafka | Confluent Cloud (optional) | bootstrap servers |
 
@@ -64,7 +64,7 @@ OPENAI_API_KEY        sk-...                           (optional)
 DATABASE_URL          postgresql://user:pass@host/db   (optional — SQLite used without)
 KAFKA_MOCK_MODE       true
 PORT                  7860
-CORS_ORIGINS          https://syncflow-support.vercel.app,http://localhost:3000
+CORS_ORIGINS          https://hackathon5-syncflow-customer-succes.vercel.app,http://localhost:3000
 ```
 
 Optional — for live channel integrations:
@@ -79,7 +79,7 @@ WHATSAPP_VERIFY_TOKEN   syncflow_verify_2025
 
 ```bash
 # Clone your Space repository
-git clone https://huggingface.co/spaces/YOUR-USERNAME/syncflow-api
+git clone https://huggingface.co/spaces/ismat110/syncflow-api
 cd syncflow-api
 
 # Copy project files
@@ -95,11 +95,11 @@ git push
 
 ```bash
 # Health check
-curl https://YOUR-USERNAME-syncflow-api.hf.space/health
+curl https://ismat110-syncflow-api.hf.space/health
 # Expected: {"status":"ok","version":"3.0.0",...}
 
 # Test ticket submission
-curl -X POST https://YOUR-USERNAME-syncflow-api.hf.space/support/submit \
+curl -X POST https://ismat110-syncflow-api.hf.space/support/submit \
   -H "Content-Type: application/json" \
   -d '{
     "channel": "web_form",
@@ -108,7 +108,7 @@ curl -X POST https://YOUR-USERNAME-syncflow-api.hf.space/support/submit \
   }'
 
 # Open Swagger UI
-# https://YOUR-USERNAME-syncflow-api.hf.space/docs
+# https://ismat110-syncflow-api.hf.space/docs
 ```
 
 ### Hugging Face Notes
@@ -125,7 +125,7 @@ curl -X POST https://YOUR-USERNAME-syncflow-api.hf.space/support/submit \
 ### Prerequisites
 
 - Vercel account: https://vercel.com
-- Backend URL from Hugging Face (e.g. `https://YOUR-USERNAME-syncflow-api.hf.space`)
+- Backend URL from Hugging Face (e.g. `https://ismat110-syncflow-api.hf.space`)
 
 ### Option A: Vercel Dashboard (Recommended)
 
@@ -139,13 +139,13 @@ curl -X POST https://YOUR-USERNAME-syncflow-api.hf.space/support/submit \
 4. Expand **Environment Variables** and add:
    ```
    Name:  NEXT_PUBLIC_API_URL
-   Value: https://YOUR-USERNAME-syncflow-api.hf.space
+   Value: https://ismat110-syncflow-api.hf.space
    ```
 5. Click **Deploy**
-6. Once deployed, note your Vercel URL (e.g. `https://syncflow-support.vercel.app`)
+6. Once deployed, note your Vercel URL (e.g. `https://hackathon5-syncflow-customer-succes.vercel.app`)
 7. Go back to your HF Space secrets and set:
    ```
-   CORS_ORIGINS = https://syncflow-support.vercel.app,http://localhost:3000
+   CORS_ORIGINS = https://hackathon5-syncflow-customer-succes.vercel.app,http://localhost:3000
    ```
 
 ### Option B: Vercel CLI
@@ -158,7 +158,7 @@ vercel --prod
 # When prompted:
 #   Root directory?     ./  (already in frontend/)
 #   Framework?          Next.js
-#   Set env variable:   NEXT_PUBLIC_API_URL = https://YOUR-USERNAME-syncflow-api.hf.space
+#   Set env variable:   NEXT_PUBLIC_API_URL = https://ismat110-syncflow-api.hf.space
 ```
 
 ### Verify Frontend

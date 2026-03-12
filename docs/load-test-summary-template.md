@@ -52,7 +52,7 @@ start reports/load-report-local.html  # Windows
 
 ```bash
 locust -f tests/load_test.py \
-  --host=https://YOUR-USERNAME-syncflow-api.hf.space \
+  --host=https://ismat110-syncflow-api.hf.space \
   --users=20 \
   --spawn-rate=2 \
   --run-time=60s \

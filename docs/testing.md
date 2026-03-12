@@ -90,7 +90,7 @@ locust -f tests/load_test.py \
 
 # Against Hugging Face deployment
 locust -f tests/load_test.py \
-  --host=https://YOUR-USERNAME-syncflow-api.hf.space \
+  --host=https://ismat110-syncflow-api.hf.space \
   --users=20 --spawn-rate=4 --run-time=60s --headless \
   --html=load-report.html
 ```

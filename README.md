@@ -8,45 +8,34 @@ app_port: 7860
 pinned: false
 ---
 
-<div align="center">
-
 # SyncFlow Customer Success Digital FTE
 
-### Hackathon 5 — Stage 3 Final Submission
-
-**Owner: [Ismat Fatima](https://github.com/Fatima-Ismat)** · NovaSync Technologies
+**Hackathon 5 — Stage 3 Final Submission** · Owner: [Ismat Fatima](https://github.com/Fatima-Ismat) · NovaSync Technologies
 
 ---
 
-[![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.110+-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
-[![OpenAI](https://img.shields.io/badge/OpenAI-Agents%20SDK-412991?style=for-the-badge&logo=openai&logoColor=white)](https://openai.com)
-[![Next.js](https://img.shields.io/badge/Next.js-14-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)](https://nextjs.org)
+![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=flat-square&logo=python&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.110+-009688?style=flat-square&logo=fastapi&logoColor=white)
+![OpenAI](https://img.shields.io/badge/OpenAI-Agents%20SDK-412991?style=flat-square&logo=openai&logoColor=white)
+![Next.js](https://img.shields.io/badge/Next.js-14-000000?style=flat-square&logo=nextdotjs&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-4169E1?style=flat-square&logo=postgresql&logoColor=white)
+![Kafka](https://img.shields.io/badge/Apache%20Kafka-Streaming-231F20?style=flat-square&logo=apachekafka&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-Multi--Stage-2496ED?style=flat-square&logo=docker&logoColor=white)
+![Kubernetes](https://img.shields.io/badge/Kubernetes-HPA%202--10-326CE5?style=flat-square&logo=kubernetes&logoColor=white)
+![Tests](https://img.shields.io/badge/Tests-96%20passing-brightgreen?style=flat-square&logo=pytest&logoColor=white)
+![Stage](https://img.shields.io/badge/Stage-3%20Final-blueviolet?style=flat-square)
+![Hackathon](https://img.shields.io/badge/Hackathon-5-orange?style=flat-square)
 
-[![Kafka](https://img.shields.io/badge/Apache%20Kafka-Event%20Streaming-231F20?style=for-the-badge&logo=apachekafka&logoColor=white)](https://kafka.apache.org)
-[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)](https://postgresql.org)
-[![Docker](https://img.shields.io/badge/Docker-Multi--Stage-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://docker.com)
-[![Kubernetes](https://img.shields.io/badge/Kubernetes-HPA%202--10-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white)](https://kubernetes.io)
+> A production-grade AI Customer Success Digital FTE operating 24/7 across Gmail, WhatsApp, and Web Form.
+> Powered by OpenAI Agents SDK · PostgreSQL CRM · Kafka event streaming · 9-stage processing pipeline.
+> **Zero external credentials required for demo.**
 
-[![Tests](https://img.shields.io/badge/Tests-96%20passing-brightgreen?style=for-the-badge&logo=pytest&logoColor=white)](tests/)
-[![Coverage](https://img.shields.io/badge/Coverage-Unit%20%7C%20Integration%20%7C%20E2E%20%7C%20Load-blue?style=for-the-badge)](docs/testing.md)
-[![Stage](https://img.shields.io/badge/Stage-3%20Final-blueviolet?style=for-the-badge)](README.md)
-[![Hackathon](https://img.shields.io/badge/Hackathon-5-orange?style=for-the-badge)](README.md)
-
----
-
-**A production-grade AI Customer Success Digital FTE operating 24/7 across Gmail, WhatsApp, and Web Form.**
-Powered by OpenAI Agents SDK · PostgreSQL CRM · Kafka event streaming · 9-stage processing pipeline.
-**Zero external credentials required for demo.**
-
----
-
-| 🌐 Live Backend | 🖥️ Live Frontend | 📹 Demo Video | 📄 Submission |
-|:-:|:-:|:-:|:-:|
-| [HF Spaces ↗](https://huggingface.co/spaces) | [Vercel ↗](https://vercel.com) | [Watch Demo ↗](#) | [Checklist ↗](docs/final-submission-checklist.md) |
-| `YOUR-USERNAME-syncflow-api.hf.space` | `YOUR-PROJECT.vercel.app` | 2-min walkthrough | Stage 3 Final |
-
-</div>
+**Live:**
+[API Swagger ↗](https://ismat110-syncflow-api.hf.space/docs) ·
+[Health Check ↗](https://ismat110-syncflow-api.hf.space/health) ·
+[Frontend ↗](https://hackathon5-syncflow-customer-succes.vercel.app) ·
+[GitHub ↗](https://github.com/Fatima-Ismat/hackathon5-syncflow-customer-success-fte-stage3) ·
+[Submission Checklist ↗](docs/final-submission-checklist.md)
 
 ---
 
@@ -54,7 +43,8 @@ Powered by OpenAI Agents SDK · PostgreSQL CRM · Kafka event streaming · 9-sta
 
 | What to look at | Where |
 |-----------------|-------|
-| Live API interactive docs | `GET /docs` (Swagger UI) |
+| **Live API (Swagger UI)** | [ismat110-syncflow-api.hf.space/docs ↗](https://ismat110-syncflow-api.hf.space/docs) |
+| **Live Frontend** | [hackathon5-syncflow-customer-succes.vercel.app ↗](https://hackathon5-syncflow-customer-succes.vercel.app) |
 | Submit a support ticket | `POST /support/submit` |
 | All 19 API endpoints | [API Endpoints](#api-endpoints) below |
 | Run the full test suite | `pytest -q` — 94 tests, clean output |
@@ -617,12 +607,12 @@ docker-compose up api
 # Create a Docker Space at huggingface.co/spaces
 # Add secrets: OPENAI_API_KEY, DATABASE_URL, PORT=7860
 
-git clone https://huggingface.co/spaces/YOUR-USERNAME/syncflow-api
+git clone https://huggingface.co/spaces/ismat110/syncflow-api
 cp -r Hackathon5-Customer-Success-FTE-Stage3/* syncflow-api/
 cd syncflow-api && git add . && git commit -m "Deploy Stage 3" && git push
 
 # Verify
-curl https://YOUR-USERNAME-syncflow-api.hf.space/health
+curl https://ismat110-syncflow-api.hf.space/health
 ```
 
 ### Vercel (Frontend)
@@ -849,7 +839,7 @@ FastAPI startup_event()     [tries Kafka producer, logs status]
   ↓
 GET /health returns {"status":"ok"}
   ↓
-Space is live at https://YOUR-USERNAME-syncflow-api.hf.space
+Space is live at https://ismat110-syncflow-api.hf.space
 ```
 
 ### Mock modes (no credentials needed)
@@ -894,15 +884,15 @@ PORT=7860 KAFKA_MOCK_MODE=true uvicorn api.main:app --host 0.0.0.0 --port 7860
 
 ```bash
 # Health check — should return {"status":"ok","version":"3.0.0"}
-curl https://YOUR-USERNAME-syncflow-api.hf.space/health
+curl https://ismat110-syncflow-api.hf.space/health
 
 # Submit a test ticket
-curl -X POST https://YOUR-USERNAME-syncflow-api.hf.space/support/submit \
+curl -X POST https://ismat110-syncflow-api.hf.space/support/submit \
   -H "Content-Type: application/json" \
   -d '{"channel":"web_form","customer_ref":"C-1042","message":"Testing HF deployment"}'
 
 # Open Swagger UI
-# https://YOUR-USERNAME-syncflow-api.hf.space/docs
+# https://ismat110-syncflow-api.hf.space/docs
 ```
 
 ---
@@ -934,8 +924,8 @@ In your Space → **Settings** tab → **Repository secrets**, add:
 | `WORKERS` | `1` | Yes |
 | `OPENAI_API_KEY` | `sk-...` | Optional (fallback works) |
 | `DATABASE_URL` | `postgresql://...` | Optional (SQLite used without it) |
-| `CORS_ORIGINS` | `https://YOUR-VERCEL-APP.vercel.app` | Optional |
-| `WEBHOOK_BASE_URL` | `https://YOUR-USERNAME-syncflow-api.hf.space` | Optional |
+| `CORS_ORIGINS` | `https://hackathon5-syncflow-customer-succes.vercel.app` | Optional |
+| `WEBHOOK_BASE_URL` | `https://ismat110-syncflow-api.hf.space` | Optional |
 
 > **Minimum viable set:** Just `PORT=7860` and `KAFKA_MOCK_MODE=true`.
 > Everything else has working defaults.
@@ -944,7 +934,7 @@ In your Space → **Settings** tab → **Repository secrets**, add:
 
 ```bash
 # Clone your newly created Space
-git clone https://huggingface.co/spaces/YOUR-USERNAME/syncflow-api
+git clone https://huggingface.co/spaces/ismat110/syncflow-api
 cd syncflow-api
 
 # Copy all project files into it
@@ -969,16 +959,16 @@ git push
 
 ```bash
 # Replace YOUR-USERNAME with your HF username
-curl https://YOUR-USERNAME-syncflow-api.hf.space/health
+curl https://ismat110-syncflow-api.hf.space/health
 # Expected: {"status":"ok","version":"3.0.0","channels":{"web_form":"active",...}}
 
-curl -X POST https://YOUR-USERNAME-syncflow-api.hf.space/support/submit \
+curl -X POST https://ismat110-syncflow-api.hf.space/support/submit \
   -H "Content-Type: application/json" \
   -d '{"channel":"web_form","customer_ref":"C-1042","message":"Hello from HF deployment"}'
 # Expected: {"success":true,"data":{"ticket_ref":"TKT-...","response":"..."}}
 ```
 
-Then open: `https://YOUR-USERNAME-syncflow-api.hf.space/docs` — you should see the Swagger UI.
+Then open: `https://ismat110-syncflow-api.hf.space/docs` — you should see the Swagger UI.
 
 ### Step 6 — (Optional) Connect PostgreSQL
 
@@ -996,7 +986,7 @@ For persistent data that survives container restarts:
 
 In Vercel → Project → Settings → Environment Variables:
 ```
-NEXT_PUBLIC_API_URL = https://YOUR-USERNAME-syncflow-api.hf.space
+NEXT_PUBLIC_API_URL = https://ismat110-syncflow-api.hf.space
 ```
 Then redeploy.
 
@@ -1096,7 +1086,7 @@ Still on the **Configure Project** screen, expand **Environment Variables**:
 
 ```
 Name:   NEXT_PUBLIC_API_URL
-Value:  https://YOUR-USERNAME-syncflow-api.hf.space
+Value:  https://ismat110-syncflow-api.hf.space
 ```
 
 Replace `YOUR-USERNAME` with your actual HF username and space name.
@@ -1155,9 +1145,9 @@ Vercel Dashboard → Project → Settings → Domains → Add Domain.
 
 | Service | URL | Notes |
 |---------|-----|-------|
-| 🌐 **Backend API** (Swagger UI) | `https://YOUR-USERNAME-syncflow-api.hf.space/docs` | Deploy to HF Spaces first |
-| ❤️ **Backend Health Check** | `https://YOUR-USERNAME-syncflow-api.hf.space/health` | Deploy to HF Spaces first |
-| 🖥️ **Frontend** (Vercel) | `https://YOUR-PROJECT.vercel.app` | Deploy to Vercel first |
+| 🌐 **Backend API** (Swagger UI) | [ismat110-syncflow-api.hf.space/docs](https://ismat110-syncflow-api.hf.space/docs) | Live ✅ |
+| ❤️ **Backend Health Check** | [ismat110-syncflow-api.hf.space/health](https://ismat110-syncflow-api.hf.space/health) | Live ✅ |
+| 🖥️ **Frontend** (Vercel) | [hackathon5-syncflow-customer-succes.vercel.app](https://hackathon5-syncflow-customer-succes.vercel.app) | Live ✅ |
 | 📹 **Demo Video** | `[INSERT VIDEO LINK]` | Record using `docs/demo-script.md` |
 | 🐙 **GitHub Repository** | [Fatima-Ismat/hackathon5-syncflow-customer-success-fte-stage3](https://github.com/Fatima-Ismat/hackathon5-syncflow-customer-success-fte-stage3) | This repo |
 
@@ -1165,15 +1155,7 @@ Vercel Dashboard → Project → Settings → Domains → Add Domain.
 
 ---
 
-<div align="center">
+---
 
 **Hackathon 5 · Customer Success Digital FTE · Stage 3 Final**
-
-Built with care by **[Ismat Fatima](https://github.com/Fatima-Ismat)** · NovaSync Technologies · 2025
-
-[![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white)](https://python.org)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.110+-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
-[![OpenAI](https://img.shields.io/badge/OpenAI-Agents%20SDK-412991?logo=openai&logoColor=white)](https://openai.com)
-[![Tests](https://img.shields.io/badge/96%20tests-all%20passing-brightgreen?logo=pytest)](tests/)
-
-</div>
+Built with care by [Ismat Fatima](https://github.com/Fatima-Ismat) · NovaSync Technologies · 2025

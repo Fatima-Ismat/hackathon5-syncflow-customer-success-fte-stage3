@@ -104,12 +104,12 @@
 ```bash
 # Create Docker Space at huggingface.co/spaces named "syncflow-api"
 # Add secrets: OPENAI_API_KEY, PORT=7860, KAFKA_MOCK_MODE=true
-git clone https://huggingface.co/spaces/YOUR-USERNAME/syncflow-api
+git clone https://huggingface.co/spaces/ismat110/syncflow-api
 cp -r Hackathon5-Customer-Success-FTE-Stage3/* syncflow-api/
 cd syncflow-api && git add . && git commit -m "Deploy Stage 3" && git push
 ```
 
-**Live backend URL:** 🔗 `https://YOUR-USERNAME-syncflow-api.hf.space`
+**Live backend URL:** 🔗 `https://ismat110-syncflow-api.hf.space`
 
 ### 2. Deploy Frontend to Vercel 🔧
 
@@ -118,13 +118,13 @@ cd syncflow-api && git add . && git commit -m "Deploy Stage 3" && git push
 3. Add env variable: `NEXT_PUBLIC_API_URL` = your HF Space URL
 4. Deploy
 
-**Live frontend URL:** 🔗 `https://YOUR-PROJECT.vercel.app`
+**Live frontend URL:** 🔗 `https://hackathon5-syncflow-customer-succes.vercel.app`
 
 ### 3. Update CORS on HF Spaces 🔧
 
 After Vercel deployment, add to HF Space secrets:
 ```
-CORS_ORIGINS = https://YOUR-PROJECT.vercel.app,http://localhost:3000
+CORS_ORIGINS = https://hackathon5-syncflow-customer-succes.vercel.app,http://localhost:3000
 ```
 
 ### 4. Run and record load test 🔧
@@ -169,15 +169,15 @@ Capture these before submission. Store in `docs/screenshots/`.
 
 ---
 
-## Live Links (Fill in after deploy)
+## Live Links
 
 | Service | URL | Status |
 |---------|-----|--------|
-| Backend API (Swagger) | `https://YOUR-USERNAME-syncflow-api.hf.space/docs` | 🔧 Deploy first |
-| Backend health check | `https://YOUR-USERNAME-syncflow-api.hf.space/health` | 🔧 Deploy first |
-| Frontend (Vercel) | `https://YOUR-PROJECT.vercel.app` | 🔧 Deploy first |
-| Demo video | `[INSERT LINK]` | 🔧 Record first |
-| GitHub repo | `[INSERT LINK]` | 🔧 Push first |
+| Backend API (Swagger) | [ismat110-syncflow-api.hf.space/docs](https://ismat110-syncflow-api.hf.space/docs) | ✅ Live |
+| Backend health check | [ismat110-syncflow-api.hf.space/health](https://ismat110-syncflow-api.hf.space/health) | ✅ Live |
+| Frontend (Vercel) | [hackathon5-syncflow-customer-succes.vercel.app](https://hackathon5-syncflow-customer-succes.vercel.app) | ✅ Live |
+| GitHub repo | [Fatima-Ismat/hackathon5-syncflow-customer-success-fte-stage3](https://github.com/Fatima-Ismat/hackathon5-syncflow-customer-success-fte-stage3) | ✅ Live |
+| Demo video | `[INSERT LINK]` | 🔧 Record using docs/demo-script.md |
 
 ---
 
