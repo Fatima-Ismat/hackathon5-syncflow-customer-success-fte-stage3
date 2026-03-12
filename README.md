@@ -100,14 +100,6 @@ The result: faster resolutions, fewer churned customers, and a measurable reduct
 
 > **Full 2-minute demo script:** [docs/demo-script.md](docs/demo-script.md)
 
-```
-📸  Screenshot placeholders — replace with actual images after demo session
-    docs/screenshots/01-swagger-ui.png         ← All 19 API endpoints
-    docs/screenshots/03-ticket-status.png      ← AI response + ticket detail
-    docs/screenshots/04-escalation.png         ← Auto-escalation from angry message
-    docs/screenshots/12-frontend-admin.png     ← Live metrics dashboard
-```
-
 **Quick demo (< 60 seconds):**
 
 ```bash
@@ -131,55 +123,92 @@ curl -s -X POST http://localhost:8000/support/submit \
 
 ---
 
+## Animated Demo Preview
+
+> _Insert a recorded walkthrough GIF here after the demo session._
+> _Capture using any screen recorder (e.g. LICEcap, Kap, or OBS → GIF export) and place it at `docs/screenshots/demo.gif`._
+
+**[Insert demo GIF here]**
+
+```
+📸  Demo GIF placeholder — record a 30–60s walkthrough showing:
+    1. Support form submission on the Vercel frontend
+    2. Ticket reference returned with AI response
+    3. Angry message → auto-escalation flag
+    4. Admin dashboard with live metrics
+    Then replace this block with: ![Demo](docs/screenshots/demo.gif)
+```
+
+---
+
+## Demo Media
+
+| Media | Link | Status |
+|-------|------|--------|
+| 🎬 **Demo GIF** | `docs/screenshots/demo.gif` | _Insert after recording_ |
+| 📹 **Demo Video (2 min)** | `[Insert video link after recording]` | _Follow [docs/demo-script.md](docs/demo-script.md)_ |
+| 🖥️ **Live Frontend** | [hackathon5-syncflow-customer-succes.vercel.app](https://hackathon5-syncflow-customer-succes.vercel.app) | ✅ Live |
+| 🌐 **Live Backend (Swagger)** | [ismat110-syncflow-api.hf.space/docs](https://ismat110-syncflow-api.hf.space/docs) | ✅ Live |
+| ❤️ **Live Health Check** | [ismat110-syncflow-api.hf.space/health](https://ismat110-syncflow-api.hf.space/health) | ✅ Live |
+| 🐙 **GitHub Repository** | [Fatima-Ismat/hackathon5-syncflow-customer-success-fte-stage3](https://github.com/Fatima-Ismat/hackathon5-syncflow-customer-success-fte-stage3) | ✅ Live |
+
+---
+
 ## Architecture Overview
 
 ```mermaid
 flowchart TD
     subgraph CHANNELS["📡  Inbound Channels"]
-        GM["📧 Gmail\nPOST /webhooks/gmail"]
-        WA["💬 WhatsApp / Twilio\nPOST /webhooks/whatsapp"]
+        GM["📧 Gmail / Email\nPOST /webhooks/gmail"]
+        WA["💬 WhatsApp · Twilio\nPOST /webhooks/whatsapp"]
         WF["🌐 Web Form\nPOST /support/submit"]
     end
 
-    subgraph API["⚡  FastAPI Layer  ·  19 Endpoints  ·  Pydantic v2  ·  Swagger /docs"]
-        EP["API Router"]
+    subgraph API["⚡  FastAPI · 19 Endpoints · Pydantic v2 · Swagger /docs"]
+        EP["🔀 API Router\nPydantic validation · 422 on bad input"]
     end
 
-    subgraph PIPELINE["🔄  9-Stage Processing Pipeline"]
-        S1["1️⃣  Validate channel & payload"]
-        S2["2️⃣  Normalize via channel adapter"]
-        S3["3️⃣  Identify customer\n(ref → email → phone → auto-create)"]
-        S4["4️⃣  AI Agent run\n(OpenAI SDK + rule-based fallback)"]
-        S5["5️⃣  Sentiment analysis\n(anger / frustration / urgency)"]
-        S6["6️⃣  Create ticket\n(SLA: 4 plans × 4 priorities)"]
-        S7["7️⃣  Escalation routing\n(17 reasons → 8 specialist queues)"]
-        S8["8️⃣  Dispatch response via channel adapter"]
-        S9["9️⃣  Publish Kafka event + record metrics"]
+    subgraph PIPELINE["🔄  9-Stage Processing Pipeline  (api/main.py → _process_message)"]
+        S1["① Validate\nchannel + payload"]
+        S2["② Normalize\nchannel adapter"]
+        S3["③ Identify Customer\nref → email → phone → auto-create"]
+        S4["④ AI Agent\nOpenAI SDK + rule-based fallback"]
+        S5["⑤ Sentiment\nanger · frustration · urgency"]
+        S6["⑥ Create Ticket\nSLA: 4 plans × 4 priorities"]
+        S7["⑦ Escalate\n17 reasons → 8 specialist queues"]
+        S8["⑧ Dispatch Reply\nvia channel adapter"]
+        S9["⑨ Kafka + Metrics\npublish event · record stats"]
         S1-->S2-->S3-->S4-->S5-->S6-->S7-->S8-->S9
     end
 
     subgraph BACKENDS["🗄️  Backend Services"]
-        OAI["🤖 OpenAI Agents SDK\nagent/tools.py\n@function_tool × 6\n+ _impl_* fallbacks"]
-        PG["🐘 PostgreSQL CRM\n8 tables · SQLAlchemy 2.0\nSQLite fallback"]
-        KF["📨 Kafka Event Bus\n8 topics · dead-letter\nin-memory mock"]
+        OAI["🤖 OpenAI Agents SDK\n6 × @function_tool\n_impl_* rule-based fallbacks"]
+        PG["🐘 PostgreSQL CRM\n8 tables · SQLAlchemy 2.0\nSQLite fallback · seed data"]
+        KF["📨 Kafka Event Bus\n8 topics · dead-letter queue\nin-memory mock · zero config"]
     end
 
-    subgraph FRONTEND["🖥️  Next.js 14 Frontend  ·  Vercel"]
-        FE["Support Form · Ticket Status · Admin Dashboard"]
+    subgraph FRONTEND["🖥️  Next.js 14 · Vercel  ·  hackathon5-syncflow-customer-succes.vercel.app"]
+        FE["Support Form  ·  Ticket Status  ·  Admin Dashboard"]
     end
 
     GM & WA & WF --> EP --> PIPELINE
-    S4 --- OAI
-    S6 --- PG
-    S9 --- KF
-    PG --- FRONTEND
-    KF --- FRONTEND
+    S4 -. AI calls .-> OAI
+    S6 -. CRM writes .-> PG
+    S9 -. events .-> KF
+    PG -. data .-> FE
+    KF -. metrics .-> FE
 
     style CHANNELS fill:#dbeafe,stroke:#3b82f6,color:#1e3a5f
     style API fill:#dcfce7,stroke:#22c55e,color:#14532d
-    style PIPELINE fill:#fef9c3,stroke:#eab308,color:#713f12
+    style PIPELINE fill:#fef9c3,stroke:#ca8a04,color:#713f12
     style BACKENDS fill:#fce7f3,stroke:#ec4899,color:#831843
     style FRONTEND fill:#ede9fe,stroke:#8b5cf6,color:#4c1d95
+    style EP fill:#bbf7d0,stroke:#16a34a,color:#14532d
+    style S4 fill:#fef08a,stroke:#ca8a04,color:#713f12
+    style S7 fill:#fed7aa,stroke:#ea580c,color:#7c2d12
+    style OAI fill:#f5d0fe,stroke:#a21caf,color:#4a044e
+    style PG fill:#bfdbfe,stroke:#2563eb,color:#1e3a5f
+    style KF fill:#d1fae5,stroke:#059669,color:#064e3b
 ```
 
 <details>
@@ -958,7 +987,6 @@ git push
 ### Step 5 — Verify the Deployment
 
 ```bash
-# Replace YOUR-USERNAME with your HF username
 curl https://ismat110-syncflow-api.hf.space/health
 # Expected: {"status":"ok","version":"3.0.0","channels":{"web_form":"active",...}}
 
@@ -1089,8 +1117,6 @@ Name:   NEXT_PUBLIC_API_URL
 Value:  https://ismat110-syncflow-api.hf.space
 ```
 
-Replace `YOUR-USERNAME` with your actual HF username and space name.
-
 > This variable is required. Without it, all API calls fall back to `http://localhost:8000`
 > which does not exist in the Vercel build environment and every page will show errors.
 
@@ -1107,7 +1133,7 @@ Build takes ~1–2 minutes. Watch the build log for any TypeScript or lint error
 
 Once deployed:
 
-1. Open the Vercel URL (e.g. `https://syncflow-support.vercel.app`)
+1. Open [hackathon5-syncflow-customer-succes.vercel.app](https://hackathon5-syncflow-customer-succes.vercel.app)
 2. Navigate to **Submit a Request** (`/support`) — fill in name, email, message → submit
 3. Copy the returned **ticket reference** (format: `TKT-YYYYMMDD-XXXX`)
 4. Navigate to **Track Ticket** (`/ticket-status`) → paste the reference → verify ticket loads
@@ -1118,10 +1144,8 @@ Once deployed:
 Your Vercel URL needs to be allowed by the backend. In your HF Space → **Settings → Repository secrets**:
 
 ```
-CORS_ORIGINS = https://syncflow-support.vercel.app,http://localhost:3000
+CORS_ORIGINS = https://hackathon5-syncflow-customer-succes.vercel.app,http://localhost:3000
 ```
-
-Replace `syncflow-support.vercel.app` with your actual Vercel domain.
 
 After adding/changing secrets, the HF Space will rebuild automatically.
 
@@ -1143,17 +1167,14 @@ Vercel Dashboard → Project → Settings → Domains → Add Domain.
 
 ## Live Links
 
-| Service | URL | Notes |
-|---------|-----|-------|
-| 🌐 **Backend API** (Swagger UI) | [ismat110-syncflow-api.hf.space/docs](https://ismat110-syncflow-api.hf.space/docs) | Live ✅ |
-| ❤️ **Backend Health Check** | [ismat110-syncflow-api.hf.space/health](https://ismat110-syncflow-api.hf.space/health) | Live ✅ |
-| 🖥️ **Frontend** (Vercel) | [hackathon5-syncflow-customer-succes.vercel.app](https://hackathon5-syncflow-customer-succes.vercel.app) | Live ✅ |
-| 📹 **Demo Video** | `[INSERT VIDEO LINK]` | Record using `docs/demo-script.md` |
-| 🐙 **GitHub Repository** | [Fatima-Ismat/hackathon5-syncflow-customer-success-fte-stage3](https://github.com/Fatima-Ismat/hackathon5-syncflow-customer-success-fte-stage3) | This repo |
-
-> **Submission checklist and screenshot guide:** [docs/final-submission-checklist.md](docs/final-submission-checklist.md)
-
----
+| Service | URL | Status |
+|---------|-----|--------|
+| 🌐 **Backend API — Swagger UI** | [ismat110-syncflow-api.hf.space/docs](https://ismat110-syncflow-api.hf.space/docs) | ✅ Live |
+| ❤️ **Backend Health Check** | [ismat110-syncflow-api.hf.space/health](https://ismat110-syncflow-api.hf.space/health) | ✅ Live |
+| 🖥️ **Frontend — Vercel** | [hackathon5-syncflow-customer-succes.vercel.app](https://hackathon5-syncflow-customer-succes.vercel.app) | ✅ Live |
+| 🐙 **GitHub Repository** | [Fatima-Ismat/hackathon5-syncflow-customer-success-fte-stage3](https://github.com/Fatima-Ismat/hackathon5-syncflow-customer-success-fte-stage3) | ✅ Live |
+| 📹 **Demo Video** | _Record using [docs/demo-script.md](docs/demo-script.md) · Insert link here_ | 🔧 Pending |
+| 📋 **Submission Checklist** | [docs/final-submission-checklist.md](docs/final-submission-checklist.md) | ✅ Ready |
 
 ---
 
