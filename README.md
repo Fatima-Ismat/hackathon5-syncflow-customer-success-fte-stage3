@@ -1,3 +1,13 @@
+---
+title: SyncFlow Customer Success API
+emoji: 🤖
+colorFrom: blue
+colorTo: indigo
+sdk: docker
+app_port: 7860
+pinned: false
+---
+
 <div align="center">
 
 # SyncFlow Customer Success Digital FTE
