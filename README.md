@@ -123,34 +123,16 @@ curl -s -X POST http://localhost:8000/support/submit \
 
 ---
 
-## Animated Demo Preview
-
-> _Insert a recorded walkthrough GIF here after the demo session._
-> _Capture using any screen recorder (e.g. LICEcap, Kap, or OBS → GIF export) and place it at `docs/screenshots/demo.gif`._
-
-**[Insert demo GIF here]**
-
-```
-📸  Demo GIF placeholder — record a 30–60s walkthrough showing:
-    1. Support form submission on the Vercel frontend
-    2. Ticket reference returned with AI response
-    3. Angry message → auto-escalation flag
-    4. Admin dashboard with live metrics
-    Then replace this block with: ![Demo](docs/screenshots/demo.gif)
-```
-
----
-
 ## Demo Media
 
 | Media | Link | Status |
 |-------|------|--------|
-| 🎬 **Demo GIF** | `docs/screenshots/demo.gif` | _Insert after recording_ |
-| 📹 **Demo Video (2 min)** | `[Insert video link after recording]` | _Follow [docs/demo-script.md](docs/demo-script.md)_ |
 | 🖥️ **Live Frontend** | [hackathon5-syncflow-customer-succes.vercel.app](https://hackathon5-syncflow-customer-succes.vercel.app) | ✅ Live |
-| 🌐 **Live Backend (Swagger)** | [ismat110-syncflow-api.hf.space/docs](https://ismat110-syncflow-api.hf.space/docs) | ✅ Live |
-| ❤️ **Live Health Check** | [ismat110-syncflow-api.hf.space/health](https://ismat110-syncflow-api.hf.space/health) | ✅ Live |
+| 🌐 **Live Backend — Swagger UI** | [ismat110-syncflow-api.hf.space/docs](https://ismat110-syncflow-api.hf.space/docs) | ✅ Live |
+| ❤️ **Live Backend — Health** | [ismat110-syncflow-api.hf.space/health](https://ismat110-syncflow-api.hf.space/health) | ✅ Live |
 | 🐙 **GitHub Repository** | [Fatima-Ismat/hackathon5-syncflow-customer-success-fte-stage3](https://github.com/Fatima-Ismat/hackathon5-syncflow-customer-success-fte-stage3) | ✅ Live |
+| 📹 **Demo Video (2 min)** | _Record using [docs/demo-script.md](docs/demo-script.md) — insert link here_ | 🔧 Pending |
+| 📋 **Submission Checklist** | [docs/final-submission-checklist.md](docs/final-submission-checklist.md) | ✅ Ready |
 
 ---
 
@@ -500,19 +482,19 @@ locust -f tests/load_test.py --host=http://localhost:8000 \
 
 ```bash
 # Full service health (all subsystems)
-curl https://YOUR-API.hf.space/health
+curl https://ismat110-syncflow-api.hf.space/health
 
 # 24h performance summary
-curl https://YOUR-API.hf.space/metrics/summary?hours=24
+curl https://ismat110-syncflow-api.hf.space/metrics/summary?hours=24
 
 # Channel breakdown
-curl https://YOUR-API.hf.space/metrics/channels?hours=24
+curl https://ismat110-syncflow-api.hf.space/metrics/channels?hours=24
 
 # Escalated tickets needing human attention
-curl "https://YOUR-API.hf.space/tickets?status=escalated&limit=20"
+curl "https://ismat110-syncflow-api.hf.space/tickets?status=escalated&limit=20"
 
 # Sentiment distribution
-curl https://YOUR-API.hf.space/metrics/sentiment?hours=24
+curl https://ismat110-syncflow-api.hf.space/metrics/sentiment?hours=24
 ```
 
 ### Alert Thresholds
@@ -539,7 +521,7 @@ export DATABASE_URL=sqlite:///./syncflow_emergency.db && uvicorn api.main:app
 export KAFKA_MOCK_MODE=true && restart workers
 
 # Manual ticket escalation
-curl -X POST https://YOUR-API.hf.space/tickets/TKT-XXXXX/escalate \
+curl -X POST https://ismat110-syncflow-api.hf.space/tickets/TKT-XXXXX/escalate \
   -d '{"reason":"low_kb_confidence","priority":"high","notes":"Needs human review"}'
 ```
 
@@ -1162,19 +1144,6 @@ Vercel Dashboard → Project → Settings → Domains → Add Domain.
 | CORS error in browser console | Backend `CORS_ORIGINS` doesn't include Vercel URL | Add Vercel URL to `CORS_ORIGINS` HF secret |
 | `/admin` shows "API Offline" | HF Space is sleeping (cold start) | Wait 30s and refresh; first request wakes the Space |
 | Build succeeds but env var not picked up | Variable added after build | Go to Vercel → Deployments → **Redeploy** (to rebuild with updated vars) |
-
----
-
-## Live Links
-
-| Service | URL | Status |
-|---------|-----|--------|
-| 🌐 **Backend API — Swagger UI** | [ismat110-syncflow-api.hf.space/docs](https://ismat110-syncflow-api.hf.space/docs) | ✅ Live |
-| ❤️ **Backend Health Check** | [ismat110-syncflow-api.hf.space/health](https://ismat110-syncflow-api.hf.space/health) | ✅ Live |
-| 🖥️ **Frontend — Vercel** | [hackathon5-syncflow-customer-succes.vercel.app](https://hackathon5-syncflow-customer-succes.vercel.app) | ✅ Live |
-| 🐙 **GitHub Repository** | [Fatima-Ismat/hackathon5-syncflow-customer-success-fte-stage3](https://github.com/Fatima-Ismat/hackathon5-syncflow-customer-success-fte-stage3) | ✅ Live |
-| 📹 **Demo Video** | _Record using [docs/demo-script.md](docs/demo-script.md) · Insert link here_ | 🔧 Pending |
-| 📋 **Submission Checklist** | [docs/final-submission-checklist.md](docs/final-submission-checklist.md) | ✅ Ready |
 
 ---
 
