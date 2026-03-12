@@ -1,0 +1,4 @@
+# Stage 2: Web form integration will be implemented here.
+# - form_handler.py       (Inbound form submission processing)
+# - response_renderer.py  (Inline response widget rendering)
+# - session_tracker.py    (Form session state management)

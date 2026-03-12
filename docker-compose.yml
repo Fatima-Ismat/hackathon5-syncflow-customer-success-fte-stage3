@@ -1,0 +1,151 @@
+version: "3.9"
+
+# SyncFlow Customer Success Digital FTE — Local Development Stack
+#
+# Services:
+#   api         FastAPI backend (port 8000)
+#   worker      Kafka message processor
+#   postgres    PostgreSQL CRM database (port 5432)
+#   kafka       Apache Kafka (port 9092)
+#   zookeeper   Kafka dependency
+#   frontend    Next.js frontend (port 3000)
+#
+# Quick start:
+#   docker-compose up -d postgres kafka
+#   docker-compose up api
+#   docker-compose up  # full stack
+#
+# Frontend only (no Docker needed):
+#   cd frontend && npm install && npm run dev
+
+services:
+
+  # ── PostgreSQL ──────────────────────────────────────────────────────────────
+  postgres:
+    image: postgres:15-alpine
+    container_name: syncflow-postgres
+    environment:
+      POSTGRES_DB: syncflow_crm
+      POSTGRES_USER: syncflow
+      POSTGRES_PASSWORD: syncflow_dev_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database/migrations/001_initial.sql:/docker-entrypoint-initdb.d/001_initial.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U syncflow -d syncflow_crm"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ── Zookeeper (Kafka dependency) ────────────────────────────────────────────
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.6.0
+    container_name: syncflow-zookeeper
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - "2181:2181"
+
+  # ── Kafka ───────────────────────────────────────────────────────────────────
+  kafka:
+    image: confluentinc/cp-kafka:7.6.0
+    container_name: syncflow-kafka
+    depends_on:
+      - zookeeper
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092,PLAINTEXT_INTERNAL://kafka:29092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_INTERNAL:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT_INTERNAL
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+    healthcheck:
+      test: ["CMD", "kafka-broker-api-versions", "--bootstrap-server", "localhost:9092"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
+
+  # ── FastAPI Backend ─────────────────────────────────────────────────────────
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runtime
+    container_name: syncflow-api
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "8000:8000"
+    environment:
+      PORT: "8000"
+      DATABASE_URL: "postgresql://syncflow:syncflow_dev_password@postgres:5432/syncflow_crm"
+      KAFKA_BOOTSTRAP_SERVERS: "kafka:29092"
+      KAFKA_MOCK_MODE: "false"
+      KAFKA_SECURITY_PROTOCOL: "PLAINTEXT"
+      OPENAI_API_KEY: "${OPENAI_API_KEY:-}"
+      CORS_ORIGINS: "http://localhost:3000"
+      WORKERS: "2"
+    volumes:
+      - .:/app
+    command: >
+      sh -c "python database/seed.py &&
+             uvicorn api.main:app --host 0.0.0.0 --port 8000 --reload"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+
+  # ── Message Processor Worker ─────────────────────────────────────────────────
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runtime
+    container_name: syncflow-worker
+    depends_on:
+      api:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: "postgresql://syncflow:syncflow_dev_password@postgres:5432/syncflow_crm"
+      KAFKA_BOOTSTRAP_SERVERS: "kafka:29092"
+      KAFKA_MOCK_MODE: "false"
+      KAFKA_SECURITY_PROTOCOL: "PLAINTEXT"
+      OPENAI_API_KEY: "${OPENAI_API_KEY:-}"
+    volumes:
+      - .:/app
+    command: python workers/message_processor.py
+    restart: unless-stopped
+
+  # ── Next.js Frontend ─────────────────────────────────────────────────────────
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.frontend
+    container_name: syncflow-frontend
+    depends_on:
+      - api
+    ports:
+      - "3000:3000"
+    environment:
+      NEXT_PUBLIC_API_URL: "http://localhost:8000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+      - /app/.next
+    command: npm run dev
+
+
+volumes:
+  postgres_data:
+
+networks:
+  default:
+    name: syncflow-network

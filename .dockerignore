@@ -1,0 +1,70 @@
+# .dockerignore — SyncFlow Customer Success Digital FTE
+# Excludes files that are not needed inside the Docker image.
+# Keeps build context small → faster builds on Hugging Face Spaces.
+
+# ── Version control ──────────────────────────────────────────────────────────
+.git
+.gitignore
+.gitattributes
+
+# ── Python cache ──────────────────────────────────────────────────────────────
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info
+dist/
+build/
+*.egg
+
+# ── Virtual environments ──────────────────────────────────────────────────────
+venv/
+.venv/
+env/
+.env/
+
+# ── Secrets — never bake into the image ──────────────────────────────────────
+.env
+*.env.local
+*.env.production
+secrets/
+
+# ── Local databases ───────────────────────────────────────────────────────────
+*.db
+*.sqlite
+*.sqlite3
+syncflow_dev.db
+syncflow_emergency.db
+
+# ── Test artifacts ────────────────────────────────────────────────────────────
+.pytest_cache/
+htmlcov/
+.coverage
+coverage.xml
+reports/
+
+# ── Frontend build artifacts ──────────────────────────────────────────────────
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/.vercel/
+
+# ── Node ──────────────────────────────────────────────────────────────────────
+node_modules/
+
+# ── IDE ───────────────────────────────────────────────────────────────────────
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# ── Docker ────────────────────────────────────────────────────────────────────
+# Don't include docker-compose in image (only used for local dev)
+docker-compose*.yml
+docker-compose*.yaml
+
+# ── Logs ─────────────────────────────────────────────────────────────────────
+*.log
+logs/

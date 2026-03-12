@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: syncflow-config
+  namespace: syncflow
+data:
+  KAFKA_MOCK_MODE: "false"
+  KAFKA_SECURITY_PROTOCOL: "SASL_SSL"
+  KAFKA_CLIENT_ID: "syncflow-fte-k8s"
+  CORS_ORIGINS: "https://syncflow-support.vercel.app"
+  WORKERS: "4"
+  PORT: "8000"
+  LOG_LEVEL: "INFO"
+  WHATSAPP_VERIFY_TOKEN: "syncflow_verify_2025"

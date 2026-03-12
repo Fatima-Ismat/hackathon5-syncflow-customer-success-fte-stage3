@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: syncflow
+  labels:
+    app: syncflow-customer-success
+    owner: ismat-fatima
+    environment: production

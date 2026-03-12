@@ -1,0 +1,20 @@
+# Normalize line endings to LF in the repository
+* text=auto eol=lf
+
+# Explicitly declare shell scripts as LF
+*.sh text eol=lf
+
+# Explicitly declare Windows batch files as CRLF
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Binary files — no line ending conversion
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.zip binary
+*.db binary
+*.sqlite binary

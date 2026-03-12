@@ -1,0 +1,552 @@
+[
+  {
+    "ticket_id": "T-0001",
+    "channel": "email",
+    "customer_id": "C-1042",
+    "customer_name": "Marcus Chen",
+    "plan": "growth",
+    "message": "Hello Support Team,\n\nI am writing because I have been unable to log into my SyncFlow account since yesterday evening. I have tried resetting my password twice but have not received the reset email. My account email is marcus.chen@acme.io. This is causing significant disruption to my team's daily operations as our critical workflows are currently paused.\n\nCould you please assist as soon as possible?\n\nBest regards,\nMarcus Chen\nOperations Manager, Acme Corp",
+    "topic": "login_issue",
+    "expected_action": "ai_resolve"
+  },
+  {
+    "ticket_id": "T-0002",
+    "channel": "whatsapp",
+    "customer_id": "C-2817",
+    "customer_name": "Priya Nair",
+    "plan": "starter",
+    "message": "hi how do i reset my password i forgot it",
+    "topic": "password_reset",
+    "expected_action": "ai_resolve"
+  },
+  {
+    "ticket_id": "T-0003",
+    "channel": "web_form",
+    "customer_id": "C-3301",
+    "customer_name": "James Whitfield",
+    "plan": "business",
+    "message": "Issue Type: Billing\n\nI noticed a charge of $47.22 on my card on March 3rd, which I did not expect. My plan is Business at $299/month and I only expect to be billed on the 1st. Can you explain this charge?\n\nAccount email: j.whitfield@techbridge.com",
+    "topic": "billing_question",
+    "expected_action": "ai_resolve"
+  },
+  {
+    "ticket_id": "T-0004",
+    "channel": "whatsapp",
+    "customer_id": "C-4451",
+    "customer_name": "Sofia Reyes",
+    "plan": "growth",
+    "message": "my api is throwing 429 errors everything is broken help",
+    "topic": "api_rate_limit",
+    "expected_action": "ai_resolve"
+  },
+  {
+    "ticket_id": "T-0005",
+    "channel": "email",
+    "customer_id": "C-5103",
+    "customer_name": "David Okafor",
+    "plan": "starter",
+    "message": "Dear NovaSync Support,\n\nI would like to formally request a refund for the charges incurred over the past two billing cycles. The platform has not performed as advertised and several promised features are not functional. I have documented each issue and am prepared to escalate this matter further if necessary. Please process this refund within 5 business days.\n\nRegards,\nDavid Okafor",
+    "topic": "refund_request",
+    "expected_action": "escalate_billing"
+  },
+  {
+    "ticket_id": "T-0006",
+    "channel": "whatsapp",
+    "customer_id": "C-6229",
+    "customer_name": "Lena Hoffmann",
+    "plan": "business",
+    "message": "Can I connect SyncFlow to Salesforce? How?",
+    "topic": "integration_question",
+    "expected_action": "ai_resolve"
+  },
+  {
+    "ticket_id": "T-0007",
+    "channel": "web_form",
+    "customer_id": "C-7834",
+    "customer_name": "Rajesh Patel",
+    "plan": "growth",
+    "message": "Issue Type: API\n\nI am getting a 401 Unauthorized error on all API calls. I generated a new API key last week and it was working fine until today. No changes were made on our end. Request ID: req_8f7a3b291d.\n\nPlease advise.",
+    "topic": "api_authentication",
+    "expected_action": "ai_resolve"
+  },
+  {
+    "ticket_id": "T-0008",
+    "channel": "email",
+    "customer_id": "C-8901",
+    "customer_name": "Angela Torres",
+    "plan": "enterprise",
+    "message": "Hi,\n\nWe are evaluating SyncFlow for our 500-person organization and need to discuss Enterprise pricing. We currently use a competitor and are looking for a competitive offer. Who can I speak with about negotiating a custom contract?\n\nThanks,\nAngela Torres\nVP of Technology, Global Retail Inc.",
+    "topic": "pricing_negotiation",
+    "expected_action": "escalate_sales"
+  },
+  {
+    "ticket_id": "T-0009",
+    "channel": "whatsapp",
+    "customer_id": "C-9012",
+    "customer_name": "Tom Baker",
+    "plan": "starter",
+    "message": "workflow stopped working but nothing changed on my end. what happened",
+    "topic": "workflow_not_triggering",
+    "expected_action": "ai_resolve"
+  },
+  {
+    "ticket_id": "T-0010",
+    "channel": "web_form",
+    "customer_id": "C-1023",
+    "customer_name": "Fatima Al-Rashid",
+    "plan": "business",
+    "message": "Issue Type: Security\n\nI believe someone has accessed my account without my permission. I received a login notification from an IP address in a country I have never been to. I need this investigated immediately and my account secured.\n\nThis is urgent.",
+    "topic": "account_compromise",
+    "expected_action": "escalate_security"
+  },
+  {
+    "ticket_id": "T-0011",
+    "channel": "email",
+    "customer_id": "C-1134",
+    "customer_name": "Henrik Johansson",
+    "plan": "growth",
+    "message": "Hello,\n\nI am trying to set up the Google Sheets integration but the OAuth connection keeps failing with an error that says 'redirect_uri_mismatch'. I have followed the documentation steps exactly. Could you help me troubleshoot?\n\nThanks,\nHenrik",
+    "topic": "integration_oauth_error",
+    "expected_action": "ai_resolve"
+  },
+  {
+    "ticket_id": "T-0012",
+    "channel": "whatsapp",
+    "customer_id": "C-2245",
+    "customer_name": "Chen Wei",
+    "plan": "growth",
+    "message": "how many workflows can i have on growth plan",
+    "topic": "plan_limits",
+    "expected_action": "ai_resolve"
+  },
+  {
+    "ticket_id": "T-0013",
+    "channel": "whatsapp",
+    "customer_id": "C-3356",
+    "customer_name": "Maria Santos",
+    "plan": "starter",
+    "message": "THIS IS RIDICULOUS I've been trying to get help for 3 DAYS and no one responds!!! My entire business is down!!!",
+    "topic": "angry_customer",
+    "expected_action": "escalate_sentiment"
+  },
+  {
+    "ticket_id": "T-0014",
+    "channel": "web_form",
+    "customer_id": "C-4467",
+    "customer_name": "Oliver Müller",
+    "plan": "business",
+    "message": "Issue Type: Compliance\n\nWe are undergoing a GDPR audit and need to confirm: Does SyncFlow act as a data processor or data controller for customer data processed through our workflows? We also need a copy of your Data Processing Agreement.\n\nPlease respond promptly as we have a deadline.",
+    "topic": "gdpr_compliance",
+    "expected_action": "escalate_legal"
+  },
+  {
+    "ticket_id": "T-0015",
+    "channel": "email",
+    "customer_id": "C-5578",
+    "customer_name": "Nina Kovalenko",
+    "plan": "growth",
+    "message": "Hi SyncFlow team,\n\nI have been trying to enable 2FA on my account but every time I scan the QR code with Google Authenticator and enter the code, I get an 'Invalid code' error. I have tried three different authenticator apps. My current time settings appear correct. Can you help?\n\nNina",
+    "topic": "2fa_issue",
+    "expected_action": "ai_resolve"
+  },
+  {
+    "ticket_id": "T-0016",
+    "channel": "whatsapp",
+    "customer_id": "C-6689",
+    "customer_name": "Amir Hassan",
+    "plan": "business",
+    "message": "hey can I get a discount if I pay annually",
+    "topic": "pricing_negotiation",
+    "expected_action": "escalate_sales"
+  },
+  {
+    "ticket_id": "T-0017",
+    "channel": "web_form",
+    "customer_id": "C-7791",
+    "customer_name": "Sandra Lee",
+    "plan": "starter",
+    "message": "Issue Type: Feature Request\n\nI need the ability to add custom fields to workflow triggers. Currently the platform only supports the default fields, which is very limiting for our use case. When is this feature expected?\n\nIf this is on the roadmap, I would like a commitment on a delivery timeline.",
+    "topic": "feature_request",
+    "expected_action": "escalate_product"
+  },
+  {
+    "ticket_id": "T-0018",
+    "channel": "email",
+    "customer_id": "C-8802",
+    "customer_name": "Patrick O'Brien",
+    "plan": "business",
+    "message": "Hi,\n\nI would like to cancel my subscription effective immediately. We have decided to move to a different vendor. Please confirm the cancellation and let me know how to export our data before it is deleted. We have been customers for 18 months.\n\nBest,\nPatrick",
+    "topic": "cancellation_churn_risk",
+    "expected_action": "escalate_churn"
+  },
+  {
+    "ticket_id": "T-0019",
+    "channel": "whatsapp",
+    "customer_id": "C-9913",
+    "customer_name": "Kenji Yamamoto",
+    "plan": "growth",
+    "message": "webhook not firing since yesterday. is there an outage?",
+    "topic": "webhook_issue",
+    "expected_action": "ai_resolve"
+  },
+  {
+    "ticket_id": "T-0020",
+    "channel": "web_form",
+    "customer_id": "C-1024",
+    "customer_name": "Fatou Diallo",
+    "plan": "growth",
+    "message": "Issue Type: Account\n\nI would like to transfer ownership of the SyncFlow account from my email (fatou@diallo-ventures.com) to my colleague's email (admin@diallo-ventures.com). Please advise on the steps.\n\nThank you.",
+    "topic": "account_ownership_transfer",
+    "expected_action": "ai_resolve"
+  },
+  {
+    "ticket_id": "T-0021",
+    "channel": "email",
+    "customer_id": "C-2135",
+    "customer_name": "Benjamin Clark",
+    "plan": "starter",
+    "message": "Dear Support,\n\nI signed up for the 14-day trial and my trial period ended but I never received any warning email. My account was automatically upgraded to the Starter plan and my card was charged $29. I was not aware this would happen. I would like to request a refund and downgrade back to the free tier.\n\nBenjamin Clark",
+    "topic": "unexpected_charge",
+    "expected_action": "escalate_billing"
+  },
+  {
+    "ticket_id": "T-0022",
+    "channel": "whatsapp",
+    "customer_id": "C-3246",
+    "customer_name": "Lucia Fernández",
+    "plan": "business",
+    "message": "how do i see all active sessions on my account",
+    "topic": "account_security",
+    "expected_action": "ai_resolve"
+  },
+  {
+    "ticket_id": "T-0023",
+    "channel": "web_form",
+    "customer_id": "C-4357",
+    "customer_name": "Isaac Nwosu",
+    "plan": "growth",
+    "message": "Issue Type: Technical\n\nMy Salesforce integration stopped syncing 2 days ago. The error log shows: 'INVALID_SESSION_ID: Session expired or invalid'. I have tried reconnecting three times but the error returns within minutes. This integration is critical for our sales reporting.\n\nAccount ID: C-4357",
+    "topic": "integration_session_expired",
+    "expected_action": "ai_resolve"
+  },
+  {
+    "ticket_id": "T-0024",
+    "channel": "whatsapp",
+    "customer_id": "C-5468",
+    "customer_name": "Emma Wilson",
+    "plan": "starter",
+    "message": "do you have a mobile app",
+    "topic": "feature_question",
+    "expected_action": "ai_resolve"
+  },
+  {
+    "ticket_id": "T-0025",
+    "channel": "email",
+    "customer_id": "C-6579",
+    "customer_name": "Carlos Mendoza",
+    "plan": "business",
+    "message": "To Whom It May Concern,\n\nOur legal team has reviewed the terms of service and we have identified clauses that conflict with our data residency requirements under local law. We require the contract to be amended before we renew. Please connect us with your legal or compliance team.\n\nCarlos Mendoza\nChief Operating Officer",
+    "topic": "legal_contract_issue",
+    "expected_action": "escalate_legal"
+  },
+  {
+    "ticket_id": "T-0026",
+    "channel": "whatsapp",
+    "customer_id": "C-7680",
+    "customer_name": "Yuki Tanaka",
+    "plan": "growth",
+    "message": "can i invite someone as read only",
+    "topic": "team_permissions",
+    "expected_action": "ai_resolve"
+  },
+  {
+    "ticket_id": "T-0027",
+    "channel": "web_form",
+    "customer_id": "C-8791",
+    "customer_name": "Amara Osei",
+    "plan": "business",
+    "message": "Issue Type: Bug Report\n\nWhen I export workflow run history to CSV, the timestamps are showing in UTC instead of my account timezone (GMT+3). This is causing confusion in our reports. I have confirmed my timezone is set correctly in Settings. This appears to be a platform bug.\n\nBrowser: Chrome 122, OS: Windows 11",
+    "topic": "bug_report",
+    "expected_action": "ai_resolve_or_escalate"
+  },
+  {
+    "ticket_id": "T-0028",
+    "channel": "email",
+    "customer_id": "C-9802",
+    "customer_name": "Rachel Kim",
+    "plan": "enterprise",
+    "message": "Hi Support,\n\nWe need to migrate our data from US-East to EU data residency. Our legal team has confirmed this must be completed before April 15th due to new regulatory requirements. Can you please initiate this process or connect me with the team who manages data migrations?\n\nBest,\nRachel Kim, IT Director",
+    "topic": "data_residency_migration",
+    "expected_action": "escalate_enterprise_csm"
+  },
+  {
+    "ticket_id": "T-0029",
+    "channel": "whatsapp",
+    "customer_id": "C-1035",
+    "customer_name": "Bogdan Popescu",
+    "plan": "growth",
+    "message": "500 error when i try to save a workflow. been happening all morning",
+    "topic": "platform_error",
+    "expected_action": "ai_resolve"
+  },
+  {
+    "ticket_id": "T-0030",
+    "channel": "web_form",
+    "customer_id": "C-2146",
+    "customer_name": "Nadia Volkov",
+    "plan": "starter",
+    "message": "Issue Type: Billing\n\nI need a copy of all invoices from January 2025 to present for our accounting records. Where can I download these?\n\nThank you.",
+    "topic": "invoice_history",
+    "expected_action": "ai_resolve"
+  },
+  {
+    "ticket_id": "T-0031",
+    "channel": "email",
+    "customer_id": "C-3257",
+    "customer_name": "Mohammed Al-Farsi",
+    "plan": "business",
+    "message": "Hello,\n\nI set up a Slack notification workflow that triggers when a new row is added to Google Sheets. The workflow runs successfully but the Slack message is arriving 15–20 minutes late. This delay makes the automation essentially useless for our use case. I have checked my workflow settings and cannot find a delay configuration.\n\nCan you explain why there is such a delay?\n\nMohammed",
+    "topic": "workflow_delay",
+    "expected_action": "ai_resolve"
+  },
+  {
+    "ticket_id": "T-0032",
+    "channel": "whatsapp",
+    "customer_id": "C-4368",
+    "customer_name": "Grace Adeyemi",
+    "plan": "growth",
+    "message": "how do i export all my data before i cancel",
+    "topic": "data_export",
+    "expected_action": "ai_resolve"
+  },
+  {
+    "ticket_id": "T-0033",
+    "channel": "web_form",
+    "customer_id": "C-5479",
+    "customer_name": "Lars Eriksson",
+    "plan": "business",
+    "message": "Issue Type: Access\n\nOne of our team members (user: p.johnson@company.com) was accidentally removed from the account. Their workflows and automations are now orphaned. Can you help restore their access and reassign their workflows back to them?\n\nWe need this resolved urgently as their workflows handle our daily customer notifications.",
+    "topic": "user_access_restoration",
+    "expected_action": "ai_resolve"
+  },
+  {
+    "ticket_id": "T-0034",
+    "channel": "whatsapp",
+    "customer_id": "C-6580",
+    "customer_name": "Dina Petrov",
+    "plan": "starter",
+    "message": "can i use syncflow api without coding",
+    "topic": "api_question",
+    "expected_action": "ai_resolve"
+  },
+  {
+    "ticket_id": "T-0035",
+    "channel": "email",
+    "customer_id": "C-7691",
+    "customer_name": "Thomas Andersen",
+    "plan": "growth",
+    "message": "Hi,\n\nI am trying to connect SyncFlow to our self-hosted Jira instance (not Jira Cloud). The integration list only shows Jira Cloud. Do you support on-premise or self-hosted Jira? If not, is this on the roadmap?\n\nThanks,\nThomas",
+    "topic": "integration_compatibility",
+    "expected_action": "ai_resolve"
+  },
+  {
+    "ticket_id": "T-0036",
+    "channel": "whatsapp",
+    "customer_id": "C-8702",
+    "customer_name": "Aisha Kamara",
+    "plan": "business",
+    "message": "getting 403 on API calls. key permissions look correct",
+    "topic": "api_forbidden_error",
+    "expected_action": "ai_resolve"
+  },
+  {
+    "ticket_id": "T-0037",
+    "channel": "web_form",
+    "customer_id": "C-9813",
+    "customer_name": "Victor Huang",
+    "plan": "growth",
+    "message": "Issue Type: Technical\n\nI have a workflow that runs on a schedule every hour. It was working correctly for 3 weeks but suddenly stopped 2 days ago. The run history shows 'Trigger not firing'. The workflow status is Active. The timezone in workflow settings is set to UTC. Nothing has changed on my end.\n\nWorkflow ID: WF-29934",
+    "topic": "scheduled_trigger_not_firing",
+    "expected_action": "ai_resolve"
+  },
+  {
+    "ticket_id": "T-0038",
+    "channel": "email",
+    "customer_id": "C-1024",
+    "customer_name": "Fatou Diallo",
+    "plan": "growth",
+    "message": "Hi again,\n\nFollowing up on my earlier request about transferring account ownership. I followed the steps in Settings → Account → Transfer Ownership and sent the request, but my colleague has not received the confirmation email. It has been over 24 hours. Can you check what is happening?\n\nThank you,\nFatou",
+    "topic": "account_ownership_transfer_followup",
+    "expected_action": "ai_resolve"
+  },
+  {
+    "ticket_id": "T-0039",
+    "channel": "whatsapp",
+    "customer_id": "C-2235",
+    "customer_name": "Kwame Asante",
+    "plan": "starter",
+    "message": "whats the difference between member and viewer",
+    "topic": "plan_feature_question",
+    "expected_action": "ai_resolve"
+  },
+  {
+    "ticket_id": "T-0040",
+    "channel": "web_form",
+    "customer_id": "C-3346",
+    "customer_name": "Isabella Rossi",
+    "plan": "business",
+    "message": "Issue Type: Bug\n\nI am experiencing a visual glitch in the workflow builder. When I drag and drop action steps, the canvas freezes for 2–3 seconds. This makes building complex workflows very slow and frustrating. My team is also experiencing this issue on different machines and networks.\n\nBrowser: Firefox 124 and Chrome 122 (both affected)\nOS: macOS Sonoma",
+    "topic": "ui_bug",
+    "expected_action": "ai_resolve_or_escalate"
+  },
+  {
+    "ticket_id": "T-0041",
+    "channel": "email",
+    "customer_id": "C-4457",
+    "customer_name": "Samuel Greene",
+    "plan": "enterprise",
+    "message": "Team,\n\nWe are conducting our annual vendor security review and require the following documents:\n1. SOC 2 Type II report (current)\n2. Penetration test summary (last 12 months)\n3. Your security incident response policy\n4. Subprocessor list\n\nPlease provide these under our existing NDA. Deadline: March 20th.\n\nSamuel Greene, CISO\nGreenfield Financial",
+    "topic": "security_documentation",
+    "expected_action": "escalate_enterprise_csm"
+  },
+  {
+    "ticket_id": "T-0042",
+    "channel": "whatsapp",
+    "customer_id": "C-5568",
+    "customer_name": "Mei Ling",
+    "plan": "growth",
+    "message": "is there sso support? we use okta",
+    "topic": "sso_question",
+    "expected_action": "ai_resolve"
+  },
+  {
+    "ticket_id": "T-0043",
+    "channel": "web_form",
+    "customer_id": "C-6679",
+    "customer_name": "Andrei Ionescu",
+    "plan": "starter",
+    "message": "Issue Type: Billing\n\nI upgraded from Starter to Growth but my invoice still shows $29 instead of $99. I am concerned the upgrade did not go through. My account dashboard does say Growth plan. Which is correct?\n\nOrder confirmation: ORD-88731",
+    "topic": "billing_upgrade_confusion",
+    "expected_action": "ai_resolve"
+  },
+  {
+    "ticket_id": "T-0044",
+    "channel": "email",
+    "customer_id": "C-7780",
+    "customer_name": "Chloe Dubois",
+    "plan": "business",
+    "message": "Dear Support,\n\nI need to understand the data retention policy in more detail. Specifically: if we cancel our subscription, how long will our workflow data and run logs be available? We are a financial services company and have regulatory requirements around data retention for 7 years. Does your platform support this?\n\nThank you,\nChloe Dubois\nCompliance Manager",
+    "topic": "data_retention_compliance",
+    "expected_action": "escalate_legal"
+  },
+  {
+    "ticket_id": "T-0045",
+    "channel": "whatsapp",
+    "customer_id": "C-8891",
+    "customer_name": "Fernando Castillo",
+    "plan": "growth",
+    "message": "my team member cant see the dashboard i shared. what did i do wrong",
+    "topic": "sharing_permissions",
+    "expected_action": "ai_resolve"
+  },
+  {
+    "ticket_id": "T-0046",
+    "channel": "web_form",
+    "customer_id": "C-9902",
+    "customer_name": "Hana Kovač",
+    "plan": "business",
+    "message": "Issue Type: Performance\n\nOur webhook endpoint is receiving duplicate events from SyncFlow. Every trigger fires the same event 2–3 times within seconds of each other. This is causing duplicate records in our database. We have idempotency keys on our side but the duplicates arrive with different timestamps, making deduplication very difficult.\n\nWorkflow ID: WF-11823",
+    "topic": "webhook_duplicates",
+    "expected_action": "ai_resolve_or_escalate"
+  },
+  {
+    "ticket_id": "T-0047",
+    "channel": "email",
+    "customer_id": "C-1013",
+    "customer_name": "Ravi Sharma",
+    "plan": "growth",
+    "message": "Hi,\n\nI am trying to build a workflow where the trigger is an inbound email. The documentation mentions Gmail integration supports email triggers, but when I try to set it up I can only see options for sending emails, not receiving them. Is this a limitation of my plan or a bug?\n\nRavi",
+    "topic": "integration_missing_feature",
+    "expected_action": "ai_resolve"
+  },
+  {
+    "ticket_id": "T-0048",
+    "channel": "whatsapp",
+    "customer_id": "C-2124",
+    "customer_name": "Zoe Park",
+    "plan": "starter",
+    "message": "locked out of account. too many password attempts",
+    "topic": "account_locked",
+    "expected_action": "ai_resolve"
+  },
+  {
+    "ticket_id": "T-0049",
+    "channel": "web_form",
+    "customer_id": "C-3235",
+    "customer_name": "Abdoulaye Diop",
+    "plan": "business",
+    "message": "Issue Type: Integration\n\nOur Stripe webhook integration stopped delivering payment events to SyncFlow 3 days ago. I have checked Stripe's dashboard and webhooks are being sent successfully. The SyncFlow webhook log shows no received events. Our payment failure workflows are not running as a result.\n\nWebhook endpoint verified: active\nStripe signature: matching",
+    "topic": "webhook_not_receiving",
+    "expected_action": "ai_resolve_or_escalate"
+  },
+  {
+    "ticket_id": "T-0050",
+    "channel": "email",
+    "customer_id": "C-4346",
+    "customer_name": "Natalia Kozlowski",
+    "plan": "enterprise",
+    "message": "Hello,\n\nI am Natalia, the new IT Director at Kozlowski Group. We have been a SyncFlow Enterprise customer for 2 years. I wanted to introduce myself and also flag that we are due for our annual contract review next month. I would like to speak with someone from your team about our renewal terms and potentially expanding our seat count from 200 to 350.\n\nWho is the right contact for this?\n\nWarm regards,\nNatalia Kozlowski",
+    "topic": "enterprise_renewal",
+    "expected_action": "escalate_sales_csm"
+  },
+  {
+    "ticket_id": "T-0051",
+    "channel": "whatsapp",
+    "customer_id": "C-5457",
+    "customer_name": "Daniel Osei",
+    "plan": "growth",
+    "message": "does syncflow work offline",
+    "topic": "feature_question",
+    "expected_action": "ai_resolve"
+  },
+  {
+    "ticket_id": "T-0052",
+    "channel": "web_form",
+    "customer_id": "C-6568",
+    "customer_name": "Marta Bianchi",
+    "plan": "growth",
+    "message": "Issue Type: Onboarding\n\nI just signed up for the Growth plan and I am completely lost. I cannot figure out how to create my first workflow. The documentation is extensive but I do not know where to start for my use case: I want to automatically create a Trello card when a form is submitted in Typeform.\n\nCan you walk me through this?",
+    "topic": "onboarding_help",
+    "expected_action": "ai_resolve"
+  },
+  {
+    "ticket_id": "T-0053",
+    "channel": "email",
+    "customer_id": "C-7679",
+    "customer_name": "Aaron Mitchell",
+    "plan": "business",
+    "message": "Hi Support,\n\nWe have noticed that our automation run count has jumped significantly this month. We are at 890,000 runs out of our 1,000,000 limit and it is only the 10th of the month. At this rate we will hit the limit in a few days. Our workflows have not changed. Could this be a counting error, or is there a way to investigate which workflows are consuming the most runs?\n\nAaron",
+    "topic": "automation_usage_spike",
+    "expected_action": "ai_resolve"
+  },
+  {
+    "ticket_id": "T-0054",
+    "channel": "whatsapp",
+    "customer_id": "C-8780",
+    "customer_name": "Jamal Williams",
+    "plan": "starter",
+    "message": "I keep getting 'session expired' even though i just logged in. super annoying",
+    "topic": "session_expiry",
+    "expected_action": "ai_resolve"
+  },
+  {
+    "ticket_id": "T-0055",
+    "channel": "web_form",
+    "customer_id": "C-9891",
+    "customer_name": "Claire Leblanc",
+    "plan": "growth",
+    "message": "Issue Type: Team\n\nI sent a team invite to three colleagues 5 days ago but none of them have received it. I have resent the invites twice. Our company email uses a custom domain (leblanc-design.fr). Is there a known issue with invites to certain email domains?\n\nAffected emails: a.martin@leblanc-design.fr, b.leclerc@leblanc-design.fr, c.durand@leblanc-design.fr",
+    "topic": "team_invite_not_received",
+    "expected_action": "ai_resolve_or_escalate"
+  }
+]

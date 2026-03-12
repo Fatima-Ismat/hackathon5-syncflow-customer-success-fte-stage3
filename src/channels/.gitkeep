@@ -1,0 +1,4 @@
+# Stage 2: Channel adapters will be implemented here.
+# - gmail_adapter.py      (Gmail API integration)
+# - whatsapp_adapter.py   (WhatsApp Business API via Meta Cloud)
+# - web_form_adapter.py   (SyncFlow Web Widget API)
