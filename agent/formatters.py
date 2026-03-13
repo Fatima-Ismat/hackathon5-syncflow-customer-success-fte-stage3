@@ -32,8 +32,8 @@ _WHATSAPP_WORD_LIMIT: int = 80
 _WEB_FORM_WORD_LIMIT: int = 220
 
 _NOVASYC_SIGNATURE: str = (
-    "Best,\n"
-    "The NovaSync Support Team\n"
+    "Best regards,\n"
+    "The SyncFlow Support Team\n"
     "support@novasynctechnologies.com | syncflow.io/help"
 )
 
@@ -47,10 +47,24 @@ _WHATSAPP_TICKET_LINE: str = "Ref: {ticket_ref}"
 # ---------------------------------------------------------------------------
 
 
+# Names that should not be used as a greeting — treated as missing.
+_GENERIC_NAMES: frozenset[str] = frozenset(
+    {"valued", "customer", "user", "dear", "sir", "madam", "there", "guest"}
+)
+
+
 def _first_name(full_name: str) -> str:
-    """Extract the first name from a full display name."""
+    """
+    Extract the first name from a full display name.
+
+    Returns an empty string when the name is absent or a generic placeholder
+    such as "Valued Customer", so callers can fall back to a name-free greeting.
+    """
     parts = full_name.strip().split()
-    return parts[0] if parts else "there"
+    if not parts:
+        return ""
+    first = parts[0]
+    return "" if first.lower() in _GENERIC_NAMES else first
 
 
 def _trim_to_word_limit(text: str, limit: int) -> str:
@@ -148,11 +162,12 @@ def format_email_response(
     True
     """
     name = _first_name(customer_name)
+    greeting = f"Hello {name}," if name else "Hello,"
     cleaned = _strip_markdown(content)
     trimmed = _trim_to_word_limit(cleaned, _EMAIL_WORD_LIMIT)
 
     parts: list[str] = [
-        f"Hi {name},",
+        greeting,
         "",
         trimmed,
         "",
@@ -208,9 +223,9 @@ def format_whatsapp_response(
     >>> len(msg.split()) <= 82   # limit + ref line
     True
     """
-    name = _first_name(customer_name)
+    name = _first_name(customer_name) or "there"
     if distressed:
-        greeting = f"Hey {name}, really sorry about this. "
+        greeting = f"Hey {name}, really sorry to hear that. "
     else:
         greeting = f"Hey {name}! "
 
@@ -264,15 +279,16 @@ def format_web_form_response(
     True
     """
     name = _first_name(customer_name)
+    greeting = f"Hello {name}," if name else "Hello,"
     cleaned = _strip_markdown(content)
     trimmed = _trim_to_word_limit(cleaned, _WEB_FORM_WORD_LIMIT)
 
     parts: list[str] = [
-        f"Hi {name},",
+        greeting,
         "",
         trimmed,
         "",
-        "Let us know if you have any other questions.",
+        "If you need anything else, don't hesitate to reach out.",
         "",
         _WEB_FORM_TICKET_LINE.format(ticket_ref=ticket_ref),
     ]
@@ -375,19 +391,19 @@ def format_response(
 
 
 _ESCALATION_BODY_EMAIL: str = (
-    "I want to make sure you get the best possible support here.\n\n"
-    "One of our specialists has been assigned to your case and will follow up with you {sla}. "
-    "Your full conversation history has been shared with them so you won't need to repeat yourself."
+    "Thanks for reaching out — we want to make sure you get the right support here.\n\n"
+    "Your request has been escalated to one of our specialists, who will follow up with you {sla}. "
+    "Your full conversation history has been passed along, so you won't need to repeat yourself."
 )
 
 _ESCALATION_BODY_WHATSAPP: str = (
-    "Passing you to a specialist now — they'll be in touch {sla}. "
-    "No need to repeat yourself, they have the full context."
+    "Connecting you with a specialist now — they'll be in touch {sla}. "
+    "They already have the full context, so no need to repeat anything."
 )
 
 _ESCALATION_BODY_WEB_FORM: str = (
-    "A specialist from our team has been assigned to your case and will follow up {sla}. "
-    "Your full conversation history has been shared so you won't need to repeat yourself."
+    "Your request has been escalated to our specialist team, who will follow up with you {sla}. "
+    "We've shared the full details of your case so you won't need to repeat yourself."
 )
 
 _SLA_MAP: dict[str, str] = {

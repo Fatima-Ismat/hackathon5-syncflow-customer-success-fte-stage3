@@ -374,7 +374,7 @@ class CustomerSuccessAgent:
         history_raw = get_customer_history(agent_input.customer_ref)
         tools_used.append("get_customer_history")
         customer_data = history_raw.get("customer", {})
-        customer_name: str = customer_data.get("name", "Valued Customer")
+        customer_name: str = customer_data.get("name", "")
         plan: str = customer_data.get("plan", "starter")
         is_vip: bool = customer_data.get("is_vip", False)
 

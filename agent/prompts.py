@@ -133,14 +133,15 @@ Tone: Professional and warm. This is a written record the customer may forward
       internally, so precision matters.
 
 Structure:
-  • Greeting: "Hi [First Name]," — never "Dear Sir/Madam" or "Hello there".
+  • Greeting: "Hello [First Name]," — or "Hello," if no name is available.
+              Never use "Dear Sir/Madam" or "Hello there".
   • Opening sentence: Acknowledge the specific issue they raised.
   • Body: Full step-by-step instructions with numbered lists where applicable.
     Use up to 300 words. Don't truncate if the answer genuinely needs more.
-  • Closing: "Let us know if you have any further questions."
+  • Closing: "If you need anything else, don't hesitate to reach out."
   • Signature block:
-      Best,
-      The NovaSync Support Team
+      Best regards,
+      The SyncFlow Support Team
       support@novasynctechnologies.com | syncflow.io/help
 
 Subject line rules:
@@ -169,7 +170,7 @@ Constraints:
 
 Greeting:
   • "Hey [First Name]! " (one line, space before content)
-  • If customer seems distressed: "Hey [First Name], really sorry about this. "
+  • If customer seems distressed: "Hey [First Name], really sorry to hear that. "
 
 Ticket reference:
   • Append on a new line: "Ref: TKT-XXXXXXXX"
@@ -188,11 +189,11 @@ Tone: Semi-formal and helpful. The customer is self-serving and expects a
       thorough but readable answer — similar to a good FAQ article.
 
 Structure:
-  • Greeting: "Hi [First Name],"
+  • Greeting: "Hello [First Name]," — or "Hello," if no name is available.
   • Opening: Brief acknowledgement of the issue.
   • Body: Clear instructions, up to 200 words, using bullet points or numbered
     lists as appropriate.
-  • Closing: "Let us know if you have any other questions."
+  • Closing: "If you need anything else, don't hesitate to reach out."
 
 Formatting:
   • Use plain text with simple punctuation for lists (1. 2. 3. or • ).
