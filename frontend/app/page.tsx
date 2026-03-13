@@ -5,15 +5,16 @@ export default function HomePage() {
     <div className="max-w-6xl mx-auto px-4 sm:px-6 py-20">
       {/* Hero */}
       <div className="text-center mb-16">
-        <div className="inline-flex items-center gap-2 bg-brand-50 text-brand-700 text-xs font-semibold
-                        px-3 py-1.5 rounded-full mb-6 border border-brand-100">
+        <div className="inline-flex items-center gap-2 bg-brand-50 dark:bg-brand-900/30 text-brand-700
+                        dark:text-brand-300 text-xs font-semibold px-3 py-1.5 rounded-full mb-6
+                        border border-brand-100 dark:border-brand-800">
           <span className="inline-block w-1.5 h-1.5 rounded-full bg-brand-500 animate-pulse" />
           AI-Powered Customer Success
         </div>
-        <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 mb-5 tracking-tight">
+        <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-slate-100 mb-5 tracking-tight">
           SyncFlow Support Center
         </h1>
-        <p className="text-lg text-slate-500 max-w-xl mx-auto leading-relaxed">
+        <p className="text-lg text-slate-500 dark:text-slate-400 max-w-xl mx-auto leading-relaxed">
           Get instant help from our AI Digital FTE. Submit a support request,
           track your tickets, or browse our knowledge base.
         </p>
@@ -76,16 +77,16 @@ export default function HomePage() {
       </div>
 
       {/* Stats strip */}
-      <div className="mt-20 grid grid-cols-2 sm:grid-cols-4 gap-px bg-slate-200 rounded-xl overflow-hidden">
+      <div className="mt-20 grid grid-cols-2 sm:grid-cols-4 gap-px bg-slate-200 dark:bg-slate-700 rounded-xl overflow-hidden">
         {[
           { label: 'Tickets Analyzed', value: '55+' },
           { label: 'Knowledge Base Entries', value: '12' },
           { label: 'Escalation Triggers', value: '21' },
           { label: 'Channels Supported', value: '3' },
         ].map((stat) => (
-          <div key={stat.label} className="bg-white px-6 py-5 text-center">
-            <div className="text-2xl font-bold text-brand-600">{stat.value}</div>
-            <div className="text-xs text-slate-500 mt-0.5">{stat.label}</div>
+          <div key={stat.label} className="bg-white dark:bg-slate-800 px-6 py-5 text-center">
+            <div className="text-2xl font-bold text-brand-600 dark:text-brand-400">{stat.value}</div>
+            <div className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">{stat.label}</div>
           </div>
         ))}
       </div>
@@ -103,23 +104,26 @@ function ActionCard({
   cta: string;
   color: 'brand' | 'slate';
 }) {
-  const iconBg = color === 'brand' ? 'bg-brand-50 text-brand-600' : 'bg-slate-100 text-slate-600';
+  const iconBg = color === 'brand'
+    ? 'bg-brand-50 dark:bg-brand-900/40 text-brand-600 dark:text-brand-400'
+    : 'bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300';
   const ctaClass = color === 'brand' ? 'btn-primary' : 'btn-secondary';
 
   return (
     <Link
       href={href}
-      className="card p-6 flex flex-col gap-4 hover:border-brand-200 hover:shadow-md
-                 transition-all duration-200 group"
+      className="card p-6 flex flex-col gap-4 hover:border-brand-200 dark:hover:border-brand-700
+                 hover:shadow-md transition-all duration-200 group"
     >
       <div className={`w-11 h-11 rounded-xl ${iconBg} flex items-center justify-center`}>
         {icon}
       </div>
       <div>
-        <h2 className="font-semibold text-slate-900 mb-1 group-hover:text-brand-700 transition-colors">
+        <h2 className="font-semibold text-slate-900 dark:text-slate-100 mb-1 group-hover:text-brand-700
+                       dark:group-hover:text-brand-400 transition-colors">
           {title}
         </h2>
-        <p className="text-sm text-slate-500 leading-relaxed">{description}</p>
+        <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">{description}</p>
       </div>
       <span className={`${ctaClass} mt-auto w-full`}>{cta}</span>
     </Link>

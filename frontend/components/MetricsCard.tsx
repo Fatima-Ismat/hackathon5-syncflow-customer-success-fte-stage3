@@ -18,21 +18,21 @@ export function StatCard({
   icon?: React.ReactNode;
 }) {
   const colorMap = {
-    brand:   'text-brand-600   bg-brand-50   border-brand-100',
-    emerald: 'text-emerald-600 bg-emerald-50 border-emerald-100',
-    amber:   'text-amber-600   bg-amber-50   border-amber-100',
-    red:     'text-red-600     bg-red-50     border-red-100',
-    slate:   'text-slate-600   bg-slate-100  border-slate-200',
+    brand:   'text-brand-600   bg-brand-50   border-brand-100   dark:text-brand-400  dark:bg-brand-900/30  dark:border-brand-800',
+    emerald: 'text-emerald-600 bg-emerald-50 border-emerald-100 dark:text-emerald-400 dark:bg-emerald-900/30 dark:border-emerald-800',
+    amber:   'text-amber-600   bg-amber-50   border-amber-100   dark:text-amber-400   dark:bg-amber-900/30  dark:border-amber-800',
+    red:     'text-red-600     bg-red-50     border-red-100     dark:text-red-400     dark:bg-red-900/30    dark:border-red-800',
+    slate:   'text-slate-600   bg-slate-100  border-slate-200   dark:text-slate-400   dark:bg-slate-700     dark:border-slate-600',
   };
 
   return (
     <div className="card p-5">
       <div className="flex items-start justify-between">
         <div>
-          <p className="text-sm text-slate-500 font-medium">{title}</p>
-          <p className="text-3xl font-bold text-slate-900 mt-1">{value}</p>
+          <p className="text-sm text-slate-500 dark:text-slate-400 font-medium">{title}</p>
+          <p className="text-3xl font-bold text-slate-900 dark:text-slate-100 mt-1">{value}</p>
           {subtitle && (
-            <p className="text-xs text-slate-400 mt-1">{subtitle}</p>
+            <p className="text-xs text-slate-400 dark:text-slate-500 mt-1">{subtitle}</p>
           )}
         </div>
         {icon && (
@@ -61,15 +61,15 @@ export function BarChart({
 
   return (
     <div className="card p-5">
-      <h3 className="text-sm font-semibold text-slate-700 mb-4">{title}</h3>
+      <h3 className="text-sm font-semibold text-slate-700 dark:text-slate-200 mb-4">{title}</h3>
       <div className="space-y-3">
         {data.map(({ label, value, color = 'bg-brand-500' }) => (
           <div key={label}>
             <div className="flex items-center justify-between mb-1">
-              <span className="text-xs text-slate-600 capitalize">{label.replace(/_/g, ' ')}</span>
-              <span className="text-xs font-semibold text-slate-700">{value}</span>
+              <span className="text-xs text-slate-600 dark:text-slate-400 capitalize">{label.replace(/_/g, ' ')}</span>
+              <span className="text-xs font-semibold text-slate-700 dark:text-slate-300">{value}</span>
             </div>
-            <div className="h-2 rounded-full bg-slate-100 overflow-hidden">
+            <div className="h-2 rounded-full bg-slate-100 dark:bg-slate-700 overflow-hidden">
               <div
                 className={`h-full rounded-full ${color} transition-all duration-500`}
                 style={{ width: `${(value / max) * 100}%` }}
@@ -96,10 +96,10 @@ export function QualityRing({
   color?: 'brand' | 'emerald' | 'amber' | 'red';
 }) {
   const colorClass = {
-    brand:   'text-brand-600',
-    emerald: 'text-emerald-600',
-    amber:   'text-amber-600',
-    red:     'text-red-600',
+    brand:   'text-brand-600 dark:text-brand-400',
+    emerald: 'text-emerald-600 dark:text-emerald-400',
+    amber:   'text-amber-600 dark:text-amber-400',
+    red:     'text-red-600 dark:text-red-400',
   }[color];
 
   const display = pct === null ? '—' : `${Math.round(pct * 100)}%`;
@@ -107,7 +107,7 @@ export function QualityRing({
   return (
     <div className="flex flex-col items-center gap-1.5">
       <div className={`text-2xl font-bold ${colorClass}`}>{display}</div>
-      <div className="text-xs text-slate-500 text-center">{label}</div>
+      <div className="text-xs text-slate-500 dark:text-slate-400 text-center">{label}</div>
     </div>
   );
 }
@@ -126,29 +126,29 @@ export function EscalationTable({
   if (!entries.length) {
     return (
       <div className="card p-5">
-        <h3 className="text-sm font-semibold text-slate-700 mb-3">Escalation Breakdown</h3>
-        <p className="text-sm text-slate-400">No escalations in this window.</p>
+        <h3 className="text-sm font-semibold text-slate-700 dark:text-slate-200 mb-3">Escalation Breakdown</h3>
+        <p className="text-sm text-slate-400 dark:text-slate-500">No escalations in this window.</p>
       </div>
     );
   }
 
   return (
     <div className="card p-5">
-      <h3 className="text-sm font-semibold text-slate-700 mb-3">Escalation Breakdown</h3>
+      <h3 className="text-sm font-semibold text-slate-700 dark:text-slate-200 mb-3">Escalation Breakdown</h3>
       <table className="w-full text-sm">
         <thead>
-          <tr className="border-b border-slate-100">
-            <th className="text-left text-xs text-slate-400 font-medium pb-2">Reason</th>
-            <th className="text-right text-xs text-slate-400 font-medium pb-2">Count</th>
+          <tr className="border-b border-slate-100 dark:border-slate-700">
+            <th className="text-left text-xs text-slate-400 dark:text-slate-500 font-medium pb-2">Reason</th>
+            <th className="text-right text-xs text-slate-400 dark:text-slate-500 font-medium pb-2">Count</th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-slate-50">
+        <tbody className="divide-y divide-slate-50 dark:divide-slate-700/60">
           {entries.map(([reason, count]) => (
             <tr key={reason}>
-              <td className="py-2 text-slate-600 capitalize">
+              <td className="py-2 text-slate-600 dark:text-slate-400 capitalize">
                 {reason.replace(/_/g, ' ')}
               </td>
-              <td className="py-2 text-right font-semibold text-slate-800">{count}</td>
+              <td className="py-2 text-right font-semibold text-slate-800 dark:text-slate-200">{count}</td>
             </tr>
           ))}
         </tbody>
@@ -183,13 +183,13 @@ export function StatusDistribution({
 
   return (
     <div className="card p-5">
-      <h3 className="text-sm font-semibold text-slate-700 mb-4">Ticket Distribution</h3>
+      <h3 className="text-sm font-semibold text-slate-700 dark:text-slate-200 mb-4">Ticket Distribution</h3>
       {total === 0 ? (
-        <p className="text-sm text-slate-400">No tickets yet. Submit a support request to get started.</p>
+        <p className="text-sm text-slate-400 dark:text-slate-500">No tickets yet. Submit a support request to get started.</p>
       ) : (
         <>
           {/* Stacked bar */}
-          <div className="flex h-3 rounded-full overflow-hidden mb-4 bg-slate-100">
+          <div className="flex h-3 rounded-full overflow-hidden mb-4 bg-slate-100 dark:bg-slate-700">
             {bars.map(({ label, count, color }) =>
               count > 0 ? (
                 <div
@@ -206,8 +206,8 @@ export function StatusDistribution({
             {bars.map(({ label, count, color }) => (
               <div key={label} className="flex items-center gap-2">
                 <span className={`w-2.5 h-2.5 rounded-full ${color} flex-shrink-0`} />
-                <span className="text-xs text-slate-600">{label}</span>
-                <span className="text-xs font-semibold text-slate-800 ml-auto">{count}</span>
+                <span className="text-xs text-slate-600 dark:text-slate-400">{label}</span>
+                <span className="text-xs font-semibold text-slate-800 dark:text-slate-200 ml-auto">{count}</span>
               </div>
             ))}
           </div>

@@ -49,3 +49,43 @@
     @apply rounded-xl border border-slate-200 bg-white shadow-sm;
   }
 }
+
+/* ── Dark mode overrides ──────────────────────────────────────────────────── */
+html.dark body {
+  background-color: rgb(15 23 42);   /* slate-950 */
+  color: rgb(226 232 240);           /* slate-200 */
+}
+
+html.dark .card {
+  border-color: rgb(51 65 85);       /* slate-700 */
+  background-color: rgb(30 41 59);   /* slate-800 */
+}
+
+html.dark .input-base {
+  border-color: rgb(71 85 105);      /* slate-600 */
+  background-color: rgb(51 65 85);   /* slate-700 */
+  color: rgb(226 232 240);           /* slate-200 */
+}
+
+html.dark .input-base::placeholder {
+  color: rgb(100 116 139);           /* slate-500 */
+}
+
+html.dark .input-base:disabled {
+  background-color: rgb(30 41 59);
+  color: rgb(100 116 139);
+}
+
+html.dark .label-base {
+  color: rgb(203 213 225);           /* slate-300 */
+}
+
+html.dark .btn-secondary {
+  border-color: rgb(71 85 105);      /* slate-600 */
+  background-color: rgb(51 65 85);   /* slate-700 */
+  color: rgb(226 232 240);           /* slate-200 */
+}
+
+html.dark .btn-secondary:hover {
+  background-color: rgb(71 85 105);  /* slate-600 */
+}

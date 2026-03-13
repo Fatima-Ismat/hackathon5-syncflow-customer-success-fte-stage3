@@ -80,15 +80,15 @@ export default function AdminDashboard() {
       {/* Page header */}
       <div className="flex items-start justify-between mb-8 flex-wrap gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 mb-1">Admin Dashboard</h1>
-          <p className="text-slate-500 text-sm">
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-1">Admin Dashboard</h1>
+          <p className="text-slate-500 dark:text-slate-400 text-sm">
             Real-time AI agent performance and ticket analytics.
           </p>
         </div>
 
         <div className="flex items-center gap-3">
           {/* API status indicator */}
-          <div className="flex items-center gap-1.5 text-xs text-slate-500">
+          <div className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400">
             <span className={`inline-block w-2 h-2 rounded-full ${
               apiOnline === null ? 'bg-slate-300 animate-pulse' :
               apiOnline           ? 'bg-emerald-400' : 'bg-red-400'
@@ -97,7 +97,7 @@ export default function AdminDashboard() {
           </div>
 
           {/* Window selector */}
-          <div className="flex rounded-lg border border-slate-200 overflow-hidden bg-white">
+          <div className="flex rounded-lg border border-slate-200 dark:border-slate-600 overflow-hidden bg-white dark:bg-slate-800">
             {WINDOWS.map(({ label, hours }) => (
               <button
                 key={hours}
@@ -105,7 +105,7 @@ export default function AdminDashboard() {
                 className={`px-3 py-1.5 text-xs font-medium transition-colors ${
                   window === hours
                     ? 'bg-brand-600 text-white'
-                    : 'text-slate-600 hover:bg-slate-50'
+                    : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700'
                 }`}
               >
                 {label}
@@ -133,14 +133,14 @@ export default function AdminDashboard() {
 
       {/* Last refresh */}
       {lastRefresh && (
-        <p className="text-xs text-slate-400 mb-6">
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-6">
           Last updated: {lastRefresh.toLocaleTimeString()} — auto-refreshes every 30s
         </p>
       )}
 
       {/* Error state */}
       {loadState === 'error' && (
-        <div className="card border-red-200 p-6 mb-6">
+        <div className="card border-red-200 dark:border-red-900 dark:bg-red-950/20 p-6 mb-6">
           <div className="flex gap-3 items-start">
             <svg className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" fill="none"
                  viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -150,8 +150,8 @@ export default function AdminDashboard() {
                        0L2.697 16.126zM12 15.75h.008v.008H12v-.008z" />
             </svg>
             <div>
-              <p className="text-sm font-semibold text-red-800">Dashboard unavailable</p>
-              <p className="text-sm text-red-700 mt-1">{errorMsg}</p>
+              <p className="text-sm font-semibold text-red-800 dark:text-red-300">Dashboard unavailable</p>
+              <p className="text-sm text-red-700 dark:text-red-400 mt-1">{errorMsg}</p>
             </div>
           </div>
         </div>
@@ -161,7 +161,7 @@ export default function AdminDashboard() {
       {loadState === 'loading' && !metrics && (
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6 animate-pulse">
           {[...Array(4)].map((_, i) => (
-            <div key={i} className="card p-5 h-24 bg-slate-100" />
+            <div key={i} className="card p-5 h-24 bg-slate-100 dark:bg-slate-700" />
           ))}
         </div>
       )}
@@ -170,7 +170,7 @@ export default function AdminDashboard() {
       {metrics && (
         <>
           <section className="mb-6">
-            <h2 className="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-3">
+            <h2 className="text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-3">
               Ticket Volume — Last {WINDOWS.find((w) => w.hours === window)?.label}
             </h2>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
@@ -238,11 +238,11 @@ export default function AdminDashboard() {
 
           {/* ── Quality Metrics ─────────────────────────────────────────── */}
           <section className="mb-6">
-            <h2 className="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-3">
+            <h2 className="text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-3">
               AI Agent Quality
             </h2>
             <div className="card p-6">
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 divide-x divide-slate-100">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 divide-x divide-slate-100 dark:divide-slate-700">
                 <QualityRing
                   label="Auto-Resolution Rate"
                   pct={metrics.quality.auto_resolution_rate}
@@ -264,20 +264,20 @@ export default function AdminDashboard() {
                 </div>
                 <div className="pl-6">
                   <div className="flex flex-col items-center gap-1.5">
-                    <div className="text-2xl font-bold text-slate-700">
+                    <div className="text-2xl font-bold text-slate-700 dark:text-slate-300">
                       {metrics.quality.avg_resolution_time_s !== null
                         ? formatDuration(metrics.quality.avg_resolution_time_s)
                         : '—'}
                     </div>
-                    <div className="text-xs text-slate-500 text-center">Avg Resolution Time</div>
+                    <div className="text-xs text-slate-500 dark:text-slate-400 text-center">Avg Resolution Time</div>
                   </div>
                 </div>
               </div>
 
               {/* SLA breaches */}
               {metrics.volume.sla_breaches > 0 && (
-                <div className="mt-5 pt-4 border-t border-slate-100">
-                  <p className="text-xs text-red-600 font-medium flex items-center gap-1.5">
+                <div className="mt-5 pt-4 border-t border-slate-100 dark:border-slate-700">
+                  <p className="text-xs text-red-600 dark:text-red-400 font-medium flex items-center gap-1.5">
                     <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24"
                          stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round"
@@ -295,7 +295,6 @@ export default function AdminDashboard() {
 
           {/* ── Charts Row ──────────────────────────────────────────────── */}
           <div className="grid sm:grid-cols-2 gap-5 mb-6">
-            {/* Ticket distribution */}
             <StatusDistribution
               open={ticketCounts.open}
               inProgress={ticketCounts.inProgress}
@@ -303,8 +302,6 @@ export default function AdminDashboard() {
               resolved={ticketCounts.resolved}
               total={ticketCounts.total}
             />
-
-            {/* Channel usage */}
             {channels && (
               <BarChart
                 title="Channel Volume"
@@ -323,11 +320,11 @@ export default function AdminDashboard() {
 
             {/* Recent escalated tickets */}
             <div className="card p-5">
-              <h3 className="text-sm font-semibold text-slate-700 mb-3">
+              <h3 className="text-sm font-semibold text-slate-700 dark:text-slate-200 mb-3">
                 Recent Escalations
               </h3>
               {tickets.filter((t) => t.status === 'escalated').length === 0 ? (
-                <p className="text-sm text-slate-400">No escalated tickets.</p>
+                <p className="text-sm text-slate-400 dark:text-slate-500">No escalated tickets.</p>
               ) : (
                 <div className="space-y-2">
                   {tickets
@@ -336,17 +333,17 @@ export default function AdminDashboard() {
                     .map((t) => (
                       <div key={t.ticket_ref}
                            className="flex items-start justify-between gap-2 py-2 border-b
-                                      border-slate-50 last:border-0">
+                                      border-slate-50 dark:border-slate-700 last:border-0">
                         <div className="min-w-0">
-                          <p className="text-xs font-mono text-slate-500">{t.ticket_ref}</p>
-                          <p className="text-xs text-slate-700 truncate mt-0.5">
+                          <p className="text-xs font-mono text-slate-500 dark:text-slate-400">{t.ticket_ref}</p>
+                          <p className="text-xs text-slate-700 dark:text-slate-300 truncate mt-0.5">
                             {t.escalation_queue?.replace(/-/g, ' ') ?? 'unknown queue'}
                           </p>
                         </div>
                         <span className={`text-xs font-semibold flex-shrink-0 ${
-                          t.priority === 'critical' ? 'text-red-600'    :
-                          t.priority === 'high'     ? 'text-orange-600' :
-                          t.priority === 'medium'   ? 'text-amber-600'  : 'text-slate-500'
+                          t.priority === 'critical' ? 'text-red-600 dark:text-red-400'    :
+                          t.priority === 'high'     ? 'text-orange-600 dark:text-orange-400' :
+                          t.priority === 'medium'   ? 'text-amber-600 dark:text-amber-400'  : 'text-slate-500 dark:text-slate-400'
                         }`}>
                           {t.priority}
                         </span>

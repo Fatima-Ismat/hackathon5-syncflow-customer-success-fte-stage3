@@ -243,7 +243,8 @@ export default function SupportForm() {
 
       {/* API error */}
       {formState === 'error' && (
-        <div className="flex gap-3 items-start rounded-lg bg-red-50 border border-red-200 p-4">
+        <div className="flex gap-3 items-start rounded-lg bg-red-50 dark:bg-red-950/30
+                        border border-red-200 dark:border-red-900 p-4">
           <svg className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24"
                stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round"
@@ -252,15 +253,15 @@ export default function SupportForm() {
                      3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
           </svg>
           <div>
-            <p className="text-sm font-medium text-red-800">Submission failed</p>
-            <p className="text-sm text-red-700 mt-0.5">{apiError}</p>
+            <p className="text-sm font-medium text-red-800 dark:text-red-300">Submission failed</p>
+            <p className="text-sm text-red-700 dark:text-red-400 mt-0.5">{apiError}</p>
           </div>
         </div>
       )}
 
       {/* Submit */}
       <div className="flex items-center justify-between pt-1">
-        <p className="text-xs text-slate-400">
+        <p className="text-xs text-slate-400 dark:text-slate-500">
           Fields marked <span className="text-red-500">*</span> are required
         </p>
         <button type="submit" disabled={isSubmitting} className="btn-primary min-w-[160px]">
@@ -304,20 +305,20 @@ function SuccessScreen({
       {/* Banner */}
       <div className={`flex gap-4 rounded-xl p-5 border ${
         isEscalated
-          ? 'bg-amber-50 border-amber-200'
-          : 'bg-emerald-50 border-emerald-200'
+          ? 'bg-amber-50 dark:bg-amber-950/30 border-amber-200 dark:border-amber-800'
+          : 'bg-emerald-50 dark:bg-emerald-950/30 border-emerald-200 dark:border-emerald-800'
       }`}>
         <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ${
-          isEscalated ? 'bg-amber-100' : 'bg-emerald-100'
+          isEscalated ? 'bg-amber-100 dark:bg-amber-900/50' : 'bg-emerald-100 dark:bg-emerald-900/50'
         }`}>
           {isEscalated ? (
-            <svg className="w-5 h-5 text-amber-600" fill="none" viewBox="0 0 24 24"
+            <svg className="w-5 h-5 text-amber-600 dark:text-amber-400" fill="none" viewBox="0 0 24 24"
                  stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round"
                     d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
             </svg>
           ) : (
-            <svg className="w-5 h-5 text-emerald-600" fill="none" viewBox="0 0 24 24"
+            <svg className="w-5 h-5 text-emerald-600 dark:text-emerald-400" fill="none" viewBox="0 0 24 24"
                  stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21
                 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -325,11 +326,15 @@ function SuccessScreen({
           )}
         </div>
         <div className="min-w-0">
-          <p className={`font-semibold text-sm ${isEscalated ? 'text-amber-900' : 'text-emerald-900'}`}>
+          <p className={`font-semibold text-sm ${
+            isEscalated ? 'text-amber-900 dark:text-amber-200' : 'text-emerald-900 dark:text-emerald-200'
+          }`}>
             {isEscalated ? 'Connecting you with a specialist' : 'Request received — AI response ready'}
           </p>
           {result.ticket_ref && (
-            <p className={`text-sm mt-0.5 font-mono ${isEscalated ? 'text-amber-700' : 'text-emerald-700'}`}>
+            <p className={`text-sm mt-0.5 font-mono ${
+              isEscalated ? 'text-amber-700 dark:text-amber-300' : 'text-emerald-700 dark:text-emerald-300'
+            }`}>
               Ticket: {result.ticket_ref}
             </p>
           )}
@@ -346,7 +351,7 @@ function SuccessScreen({
 
       {/* AI Response */}
       <div>
-        <h3 className="text-sm font-semibold text-slate-700 mb-2 flex items-center gap-2">
+        <h3 className="text-sm font-semibold text-slate-700 dark:text-slate-200 mb-2 flex items-center gap-2">
           <svg className="w-4 h-4 text-brand-500" fill="none" viewBox="0 0 24 24"
                stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round"
@@ -356,15 +361,15 @@ function SuccessScreen({
           </svg>
           AI Response
         </h3>
-        <div className="rounded-lg bg-slate-50 border border-slate-200 p-4 text-sm text-slate-700
-                        whitespace-pre-wrap leading-relaxed font-mono">
+        <div className="rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700
+                        p-4 text-sm text-slate-700 dark:text-slate-300 whitespace-pre-wrap leading-relaxed font-mono">
           {result.response}
         </div>
       </div>
 
       {/* KB used */}
       {result.kb_used && result.kb_section && (
-        <div className="flex items-center gap-2 text-xs text-slate-500">
+        <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
           <svg className="w-3.5 h-3.5 text-brand-400" fill="none" viewBox="0 0 24 24"
                stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round"
@@ -379,8 +384,8 @@ function SuccessScreen({
 
       {/* SLA */}
       {result.sla_deadline && (
-        <div className="flex items-center gap-2 text-xs text-slate-500">
-          <svg className="w-3.5 h-3.5 text-slate-400" fill="none" viewBox="0 0 24 24"
+        <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+          <svg className="w-3.5 h-3.5 text-slate-400 dark:text-slate-500" fill="none" viewBox="0 0 24 24"
                stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round"
                   d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -417,7 +422,7 @@ function Field({
       </label>
       {children}
       {error ? (
-        <p className="mt-1.5 text-xs text-red-600 flex items-center gap-1">
+        <p className="mt-1.5 text-xs text-red-600 dark:text-red-400 flex items-center gap-1">
           <svg className="w-3 h-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
             <path fillRule="evenodd" clipRule="evenodd"
                   d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0
@@ -426,7 +431,7 @@ function Field({
           {error}
         </p>
       ) : hint ? (
-        <p className="mt-1.5 text-xs text-slate-400">{hint}</p>
+        <p className="mt-1.5 text-xs text-slate-400 dark:text-slate-500">{hint}</p>
       ) : null}
     </div>
   );
@@ -434,9 +439,10 @@ function Field({
 
 function MetaBadge({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-lg bg-slate-50 border border-slate-100 px-3 py-2 text-center">
-      <div className="text-xs text-slate-400 mb-0.5">{label}</div>
-      <div className="text-sm font-semibold text-slate-800 capitalize">{value}</div>
+    <div className="rounded-lg bg-slate-50 dark:bg-slate-700 border border-slate-100 dark:border-slate-600
+                    px-3 py-2 text-center">
+      <div className="text-xs text-slate-400 dark:text-slate-400 mb-0.5">{label}</div>
+      <div className="text-sm font-semibold text-slate-800 dark:text-slate-200 capitalize">{value}</div>
     </div>
   );
 }

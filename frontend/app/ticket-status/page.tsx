@@ -53,11 +53,14 @@ export default function TicketStatusPage() {
     <div className="max-w-2xl mx-auto px-4 sm:px-6 py-12">
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-2xl font-bold text-slate-900 mb-2">Track Your Ticket</h1>
-        <p className="text-slate-500 text-sm">
-          Enter your ticket reference number (e.g. <code className="font-mono text-xs bg-slate-100
-          rounded px-1.5 py-0.5">TKT-20260311-4821</code>) to see its current status,
-          priority, and SLA deadline.
+        <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-2">Track Your Ticket</h1>
+        <p className="text-slate-500 dark:text-slate-400 text-sm">
+          Enter your ticket reference number (e.g.{' '}
+          <code className="font-mono text-xs bg-slate-100 dark:bg-slate-700 dark:text-slate-300
+                           rounded px-1.5 py-0.5">
+            TKT-20260311-4821
+          </code>
+          ) to see its current status, priority, and SLA deadline.
         </p>
       </div>
 
@@ -111,9 +114,9 @@ export default function TicketStatusPage() {
       {state === 'found' && ticket && (
         <div className="space-y-4">
           <div className="flex items-center justify-between">
-            <h2 className="text-sm font-semibold text-slate-700">Ticket Details</h2>
-            <button onClick={handleReset} className="text-xs text-brand-600 hover:text-brand-700
-                                                     font-medium">
+            <h2 className="text-sm font-semibold text-slate-700 dark:text-slate-300">Ticket Details</h2>
+            <button onClick={handleReset} className="text-xs text-brand-600 dark:text-brand-400
+                                                     hover:text-brand-700 dark:hover:text-brand-300 font-medium">
               Search another ticket
             </button>
           </div>
@@ -123,9 +126,9 @@ export default function TicketStatusPage() {
 
       {state === 'not_found' && (
         <div className="card p-8 text-center">
-          <div className="w-14 h-14 rounded-full bg-slate-100 flex items-center justify-center
+          <div className="w-14 h-14 rounded-full bg-slate-100 dark:bg-slate-700 flex items-center justify-center
                           mx-auto mb-4">
-            <svg className="w-7 h-7 text-slate-400" fill="none" viewBox="0 0 24 24"
+            <svg className="w-7 h-7 text-slate-400 dark:text-slate-500" fill="none" viewBox="0 0 24 24"
                  stroke="currentColor" strokeWidth={1.8}>
               <path strokeLinecap="round" strokeLinejoin="round"
                     d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025
@@ -133,8 +136,8 @@ export default function TicketStatusPage() {
                        1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
             </svg>
           </div>
-          <p className="text-slate-700 font-semibold mb-1">Ticket not found</p>
-          <p className="text-sm text-slate-400 mb-5">{errorMsg}</p>
+          <p className="text-slate-700 dark:text-slate-200 font-semibold mb-1">Ticket not found</p>
+          <p className="text-sm text-slate-400 dark:text-slate-500 mb-5">{errorMsg}</p>
           <button onClick={handleReset} className="btn-secondary">
             Try another reference
           </button>
@@ -142,7 +145,7 @@ export default function TicketStatusPage() {
       )}
 
       {state === 'error' && (
-        <div className="card border-red-200 p-6">
+        <div className="card border-red-200 dark:border-red-900 p-6 dark:bg-red-950/20">
           <div className="flex gap-3 items-start">
             <svg className="w-5 h-5 text-red-500 flex-shrink-0" fill="none" viewBox="0 0 24 24"
                  stroke="currentColor" strokeWidth={2}>
@@ -152,11 +155,11 @@ export default function TicketStatusPage() {
                        3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.008v.008H12v-.008z" />
             </svg>
             <div>
-              <p className="text-sm font-semibold text-red-800">Could not reach the backend</p>
-              <p className="text-sm text-red-700 mt-0.5">{errorMsg}</p>
-              <p className="text-xs text-red-600 mt-2">
+              <p className="text-sm font-semibold text-red-800 dark:text-red-300">Could not reach the backend</p>
+              <p className="text-sm text-red-700 dark:text-red-400 mt-0.5">{errorMsg}</p>
+              <p className="text-xs text-red-600 dark:text-red-500 mt-2">
                 Make sure the FastAPI server is running:{' '}
-                <code className="font-mono bg-red-100 px-1 rounded">
+                <code className="font-mono bg-red-100 dark:bg-red-900/40 px-1 rounded">
                   uvicorn api.main:app --reload --port 8000
                 </code>
               </p>
@@ -167,7 +170,7 @@ export default function TicketStatusPage() {
 
       {/* Help text */}
       {state === 'idle' && (
-        <div className="text-center py-8 text-slate-400">
+        <div className="text-center py-8 text-slate-400 dark:text-slate-500">
           <svg className="w-12 h-12 mx-auto mb-3 opacity-40" fill="none" viewBox="0 0 24 24"
                stroke="currentColor" strokeWidth={1.2}>
             <path strokeLinecap="round" strokeLinejoin="round"
