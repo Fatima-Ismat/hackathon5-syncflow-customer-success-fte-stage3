@@ -69,26 +69,33 @@ IMMEDIATE_ESCALATION_TOPICS = {
 }
 
 # Channel format profiles
+_GENERIC_NAMES = frozenset(
+    {"valued", "customer", "user", "dear", "sir", "madam", "there", "guest"}
+)
+
 CHANNEL_PROFILES = {
     "email": {
         "tone": "formal",
         "max_words": 300,
-        "greeting": "Hi {name},",
-        "closing": "\nBest,\nThe NovaSync Support Team",
+        "greeting": "Hello {name},",
+        "greeting_anon": "Hello,",
+        "closing": "\nBest regards,\nThe SyncFlow Support Team",
         "use_bullets": True,
     },
     "whatsapp": {
         "tone": "conversational",
         "max_words": 80,
         "greeting": "Hey {name}!",
+        "greeting_anon": "Hey!",
         "closing": "",
         "use_bullets": False,
     },
     "web_form": {
         "tone": "semi-formal",
         "max_words": 200,
-        "greeting": "Hi {name},",
-        "closing": "\nLet us know if you have any other questions.",
+        "greeting": "Hello {name},",
+        "greeting_anon": "Hello,",
+        "closing": "\nIf you need anything else, don't hesitate to reach out.",
         "use_bullets": True,
     },
 }
@@ -662,10 +669,11 @@ def format_response_for_channel(
         channel = "web_form"
 
     profile = CHANNEL_PROFILES[channel]
-    first_name = customer_name.split()[0] if customer_name else "there"
+    raw_first = (customer_name or "").strip().split()[0] if customer_name and customer_name.strip() else ""
+    first_name = "" if raw_first.lower() in _GENERIC_NAMES else raw_first
 
     # Build greeting
-    greeting = profile["greeting"].format(name=first_name)
+    greeting = profile["greeting"].format(name=first_name) if first_name else profile["greeting_anon"]
     closing = profile["closing"]
 
     if channel == "whatsapp":
@@ -784,7 +792,7 @@ def _build_escalation_acknowledgment(customer: dict, channel: str) -> str:
 def _get_customer(customer_id: str) -> dict:
     """Retrieve customer details from mock database."""
     return MOCK_CUSTOMER_DB.get(customer_id, {
-        "name": "Valued Customer",
+        "name": "",
         "plan": "starter",
         "is_vip": False,
         "open_tickets": 0,

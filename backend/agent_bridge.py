@@ -212,10 +212,14 @@ def _fallback_agent(
     topic: Optional[str],
 ) -> dict:
     """Minimal rule-based fallback when Stage 1 import is unavailable."""
+    _GENERIC = frozenset({"valued", "customer", "user", "dear", "sir", "madam", "there", "guest"})
+    _raw = (customer.get("name") or "").strip()
+    _first = _raw.split()[0] if _raw else ""
+    _name = "" if _first.lower() in _GENERIC else _first
     greetings = {
-        "email":    f"Hi {customer.get('name', 'there').split()[0]},\n\n",
-        "whatsapp": f"Hey {customer.get('name', 'there').split()[0]}! ",
-        "web_form": f"Hi {customer.get('name', 'there').split()[0]},\n\n",
+        "email":    (f"Hello {_name},\n\n" if _name else "Hello,\n\n"),
+        "whatsapp": (f"Hey {_name}! "       if _name else "Hey! "),
+        "web_form": (f"Hello {_name},\n\n" if _name else "Hello,\n\n"),
     }
     greeting = greetings.get(channel, "")
 
@@ -223,7 +227,7 @@ def _fallback_agent(
         greeting +
         "Thanks for reaching out. Our team has received your request and "
         "will get back to you shortly with a full resolution.\n\n"
-        "Best,\nThe NovaSync Support Team"
+        "Best regards,\nThe SyncFlow Support Team"
     )
 
     return {

@@ -124,7 +124,7 @@ class CustomerContext(BaseModel):
         description="Unique CRM customer reference (e.g. ``C-1042``).",
     )
     name: str = Field(
-        default="Valued Customer",
+        default="",
         description="Customer's full display name.",
     )
     email: Optional[str] = Field(

@@ -197,7 +197,7 @@ def _parse_from_header(raw: str) -> tuple[str, str]:
 def _name_from_email(email: str) -> str:
     """Derive a display name from an email address as a last resort."""
     if not email or "@" not in email:
-        return "Valued Customer"
+        return ""
     local = email.split("@")[0]
     return " ".join(part.capitalize() for part in re.split(r'[._\-]', local))
 

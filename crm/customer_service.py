@@ -223,7 +223,7 @@ def identify_customer(
             }
 
     # Strategy 5: Not found — return guest profile
-    guest_name = name or "Valued Customer"
+    guest_name = name or ""
     return {
         "found": False,
         "customer": _make_guest_profile(guest_name, email, phone, whatsapp_number),

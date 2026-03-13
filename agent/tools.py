@@ -580,7 +580,7 @@ def _impl_get_customer_history(customer_ref: str) -> dict[str, Any]:
             "found": False,
             "customer": {
                 "customer_ref": customer_ref,
-                "name": "Valued Customer",
+                "name": "",
                 "email": None,
                 "plan": "starter",
                 "account_health": "good",
