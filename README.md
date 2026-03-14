@@ -311,89 +311,130 @@ The AI agent receives the customer's full ticket history, sentiment trend, and a
 ```
 Hackathon5-Customer-Success-FTE-Stage3/
 │
-├── agent/                          OpenAI Agents SDK production agent
-│   ├── customer_success_agent.py   Main agent + 9-stage pipeline orchestration
-│   ├── tools.py                    @function_tool tools + _impl_* fallback variants
-│   ├── models.py                   Pydantic v2 models (AgentInput, AgentOutput, etc.)
-│   ├── formatters.py               Channel-aware response formatters
-│   └── prompts.py                  System prompts (base + per-channel overrides)
+├── agent/                              OpenAI Agents SDK production agent (Stage 3)
+│   ├── __init__.py                     Package entry point — exports run() + process_customer_message()
+│   ├── customer_success_agent.py       Main agent + 9-stage pipeline orchestration
+│   ├── tools.py                        @function_tool tools + _impl_* fallback variants
+│   ├── models.py                       Pydantic v2 models (AgentInput, AgentOutput, etc.)
+│   ├── formatters.py                   Channel-aware response formatters
+│   └── prompts.py                      System prompts (base + per-channel overrides)
 │
-├── api/                            Stage 3 production API
-│   └── main.py                     19 FastAPI endpoints, webhook handlers, metrics
+├── api/                                Stage 3 production API
+│   ├── __init__.py
+│   └── main.py                         19 FastAPI endpoints, webhook handlers, metrics
 │
-├── backend/                        Stage 2 API (preserved, backward-compatible)
+├── backend/                            Stage 2 → Stage 3 integration bridge
+│   ├── __init__.py
+│   ├── agent_bridge.py                 Stage 1/Stage 3 agent bridge + fallback agent
+│   └── main.py                         Stage 2 API entry point (preserved)
 │
-├── channels/                       Channel adapters (Stage 2, preserved)
-│   ├── email_channel.py            Gmail normalize() + send_reply()
-│   ├── whatsapp_channel.py         Twilio webhook normalize() + send_reply()
-│   └── web_form_channel.py         Web form normalize() + send_reply()
+├── channels/                           Channel adapters
+│   ├── __init__.py
+│   ├── email_channel.py                Gmail normalize() + send_reply()
+│   ├── whatsapp_channel.py             Twilio webhook normalize() + send_reply()
+│   └── web_form_channel.py             Web form normalize() + send_reply()
 │
-├── crm/                            CRM service layer (Stage 2+3)
-│   ├── ticket_service.py           State machine, SLA matrix, escalation routing
-│   ├── customer_service.py         4-strategy identity resolution
-│   ├── knowledge_service.py        KB search, confidence scoring
-│   └── metrics_service.py          Event log, time-windowed aggregation
+├── crm/                                CRM service layer
+│   ├── __init__.py
+│   ├── ticket_service.py               State machine, SLA matrix, escalation routing
+│   ├── customer_service.py             4-strategy identity resolution
+│   ├── knowledge_service.py            KB search, confidence scoring
+│   └── metrics_service.py              Event log, time-windowed aggregation
 │
-├── database/                       Persistence layer
-│   ├── connection.py               Engine factory (PostgreSQL + SQLite fallback)
-│   ├── models.py                   SQLAlchemy 2.0 ORM (8 tables)
-│   ├── queries.py                  Business logic query helpers
-│   ├── seed.py                     Demo seed: 7 customers, 12 KB articles
-│   └── migrations/001_initial.sql  Full PostgreSQL DDL with indexes + triggers
+├── database/                           Persistence layer
+│   ├── __init__.py
+│   ├── connection.py                   Engine factory (PostgreSQL + SQLite fallback)
+│   ├── models.py                       SQLAlchemy 2.0 ORM (8 tables)
+│   ├── queries.py                      Business logic query helpers
+│   ├── seed.py                         Demo seed: 7 customers, 12 KB articles
+│   ├── schema.sql                      Full PostgreSQL DDL
+│   └── migrations/001_initial.sql      Schema with indexes + triggers
 │
-├── workers/                        Background workers
-│   ├── message_processor.py        Kafka consumer, event processing
-│   └── metrics_collector.py        Metrics aggregation from Kafka events
+├── workers/                            Background workers
+│   ├── __init__.py
+│   ├── message_worker.py               Full 9-stage pipeline orchestrator
+│   ├── message_processor.py            Kafka consumer, event processing
+│   └── metrics_collector.py            Metrics aggregation from Kafka events
 │
-├── kafka_client.py                 Kafka producer + 8-topic in-memory mock broker
+├── frontend/                           Next.js 14 web application (dark mode)
+│   ├── app/
+│   │   ├── layout.tsx                  Root layout — navbar, ThemeToggle, footer
+│   │   ├── globals.css                 Tailwind base + dark mode CSS overrides
+│   │   ├── page.tsx                    Homepage — hero, action cards, stats strip
+│   │   ├── support/page.tsx            Support submission form
+│   │   ├── ticket-status/page.tsx      Ticket status lookup
+│   │   └── admin/page.tsx              Admin dashboard — metrics, escalations
+│   ├── components/
+│   │   ├── SupportForm.tsx             Multi-channel submission form + AI response display
+│   │   ├── TicketCard.tsx              Ticket card with status/priority badges
+│   │   ├── MetricsCard.tsx             Stats, bar charts, quality ring, escalation table
+│   │   └── ThemeToggle.tsx             Dark/light mode toggle (localStorage persistence)
+│   ├── lib/api.ts                      Typed API client (NEXT_PUBLIC_API_URL)
+│   ├── next.config.js
+│   ├── tailwind.config.ts
+│   ├── tsconfig.json
+│   ├── package.json
+│   ├── vercel.json                     Vercel deployment configuration
+│   └── Dockerfile.frontend             Frontend container
 │
-├── frontend/                       Next.js 14 web application
-│   ├── app/                        App Router pages
-│   ├── components/                 UI components
-│   ├── lib/api.ts                  Typed API client (NEXT_PUBLIC_API_URL)
-│   └── vercel.json                 Vercel deployment configuration
+├── tests/                              Complete test suite
+│   ├── conftest.py                     Fixtures + Windows async event loop fix
+│   ├── test_agent.py                   34 agent unit tests
+│   ├── test_api.py                     26 API integration tests
+│   ├── test_channels.py                15 channel adapter unit tests
+│   ├── test_multichannel_e2e.py        14 E2E tests (2 marked @slow)
+│   ├── load_test.py                    Locust load test (3 user behavior classes)
+│   ├── api_tests.md                    Manual API test cases
+│   └── test_cases.md                   Structured test case documentation
 │
-├── tests/                          Complete test suite
-│   ├── conftest.py                 Fixtures + Windows async event loop fix
-│   ├── test_agent.py               34 agent unit tests
-│   ├── test_api.py                 26 API integration tests
-│   ├── test_channels.py            15 channel adapter unit tests
-│   ├── test_multichannel_e2e.py    14 E2E tests (2 marked @slow)
-│   └── load_test.py                Locust load test (3 user behavior classes)
-│
-├── k8s/                            Kubernetes manifests
-│   ├── deployment-api.yaml         API deployment
-│   ├── deployment-worker.yaml      Worker deployment
-│   ├── hpa.yaml                    HPA: API 2-10, Worker 2-6 replicas
-│   ├── ingress.yaml                Ingress with TLS
+├── k8s/                                Kubernetes manifests
+│   ├── deployment-api.yaml             API deployment
+│   ├── deployment-worker.yaml          Worker deployment
+│   ├── hpa.yaml                        HPA: API 2-10, Worker 2-6 replicas
+│   ├── ingress.yaml                    Ingress with TLS
 │   ├── service.yaml
 │   ├── configmap.yaml
-│   ├── secrets.yaml                (template — never commit real values)
+│   ├── secrets.yaml                    (template — never commit real values)
 │   └── namespace.yaml
 │
-├── docs/                           Documentation
-│   ├── architecture.md             System design, data flows, decisions
-│   ├── deployment.md               HF Spaces + Vercel + Neon + Confluent guide
-│   ├── operations-runbook.md       Incident playbooks, monitoring, SLA response
-│   ├── testing.md                  Test categories, commands, performance targets
-│   ├── final-submission-checklist.md  Status of all deliverables + manual actions
-│   ├── demo-script.md              2-minute judge demo walkthrough
-│   ├── load-test-summary-template.md  Locust results template
-│   ├── 24-hour-readiness.md        Restart/webhook/Kafka/DB resilience plan
-│   └── limitations-and-fallbacks.md  Honest transparency + production upgrade paths
+├── docs/                               Documentation
+│   ├── architecture.md                 System design, data flows, decisions
+│   ├── deployment.md                   HF Spaces + Vercel + Neon + Confluent guide
+│   ├── operations-runbook.md           Incident playbooks, monitoring, SLA response
+│   ├── testing.md                      Test categories, commands, performance targets
+│   ├── final-submission-checklist.md   Status of all deliverables + manual actions
+│   ├── demo-script.md                  2-minute judge demo walkthrough
+│   ├── load-test-summary-template.md   Locust results template
+│   ├── 24-hour-readiness.md            Restart/webhook/Kafka/DB resilience plan
+│   └── limitations-and-fallbacks.md    Honest transparency + production upgrade paths
 │
-├── specs/                          Planning artifacts
-│   ├── stage3-plan.md
-│   └── transition-checklist.md
+├── specs/                              Planning artifacts
+│   ├── stage3-plan.md                  Stage 3 implementation plan
+│   ├── transition-checklist.md         Stage 2 → 3 transition checklist
+│   ├── agent-skills.md                 Agent tool + skill specifications
+│   ├── customer-success-fte-spec.md    Original FTE specification
+│   ├── discovery-log.md                Design decisions and discovery notes
+│   └── prompt-history.md               Prompt engineering history
 │
-├── src/                            Stage 1 prototype (preserved)
-├── context/                        Domain knowledge documents
+├── src/                                Stage 1 prototype (preserved)
+│   └── agent/
+│       ├── customer_success_agent.py   Stage 1 rule-based agent
+│       └── mcp_server.py               MCP server prototype
 │
-├── Dockerfile                      Multi-stage: builder + non-root runtime (PORT=7860)
-├── docker-compose.yml              Full stack: postgres, zookeeper, kafka, api, worker, frontend
-├── pytest.ini                      Fast-by-default config (slow + load markers excluded)
-├── .env.example                    All environment variables with descriptions
-└── requirements.txt                Python dependencies
+├── context/                            Domain knowledge documents
+│   ├── brand-voice.md
+│   ├── company-profile.md
+│   ├── escalation-rules.md
+│   ├── product-docs.md
+│   └── sample-tickets.json
+│
+├── kafka_client.py                     Kafka producer + 8-topic in-memory mock broker
+├── startup.sh                          HF Spaces container startup script
+├── Dockerfile                          Multi-stage: builder + non-root runtime (PORT=7860)
+├── docker-compose.yml                  Full stack: postgres, zookeeper, kafka, api, worker, frontend
+├── pytest.ini                          Fast-by-default config (slow + load markers excluded)
+├── .env.example                        All environment variables with descriptions
+└── requirements.txt                    Python dependencies
 ```
 
 ---
