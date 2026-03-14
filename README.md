@@ -133,7 +133,7 @@ curl -s -X POST http://localhost:8000/support/submit \
 | 🌐 **Live Backend — Swagger UI** | [ismat110-syncflow-api.hf.space/docs](https://ismat110-syncflow-api.hf.space/docs) | ✅ Live |
 | ❤️ **Live Backend — Health** | [ismat110-syncflow-api.hf.space/health](https://ismat110-syncflow-api.hf.space/health) | ✅ Live |
 | 🐙 **GitHub Repository** | [Fatima-Ismat/hackathon5-syncflow-customer-success-fte-stage3](https://github.com/Fatima-Ismat/hackathon5-syncflow-customer-success-fte-stage3) | ✅ Live |
-| 📹 **Demo Video (2 min)** | _Record using [docs/demo-script.md](docs/demo-script.md) — insert link here_ | 🔧 Pending |
+| 📹 **Demo Video (2 min)** | [youtu.be/Kyul6JPZXKk](https://youtu.be/Kyul6JPZXKk) | ✅ Live |
 | 📋 **Submission Checklist** | [docs/final-submission-checklist.md](docs/final-submission-checklist.md) | ✅ Ready |
 
 ---
